@@ -28,6 +28,58 @@
                 .logo{
                     font-weight: bold;
                 }
+                .user{
+                    display: flex;
+                    gap: 10px;
+                }
+                button{
+                    background-color:#393940 ;
+                    color:#ddddf7 ;
+                    font: 10px;
+                    border: none;
+                    cursor: pointer;
+                }
+                
+               
+            }
+            .search{
+                border-bottom: 1px solid gray;
+                .searchForm{
+                    padding: 10px;
+
+                    input{
+                        background-color:transparent;
+                        border: none;
+                        color: white;
+                        outline: none;
+
+                        &::placeholder{
+                            color: white;
+                        }
+                     }
+                }
+            }
+            .userChat{
+               padding: 10px;
+               display: flex;
+               align-items: center;
+               gap: 10px;
+               color: white;
+               cursor: pointer;
+
+               &:hover{
+                background-color: #2f2d52;
+               }
+               .userChatInfo{
+                span{
+                    font-size: 18px ;
+                    font-weight: 500;
+                }
+                p{
+                    font-size: 14px;
+                    color:lightgray;
+                }
+               }
             }
 
         }
