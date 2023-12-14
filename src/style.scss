@@ -66,7 +66,8 @@
                gap: 10px;
                color: white;
                cursor: pointer;
-
+               width: 100%;
+               text-align: left;
                &:hover{
                 background-color: #2f2d52;
                }
@@ -74,6 +75,7 @@
                 span{
                     font-size: 18px ;
                     font-weight: 500;
+                    
                 }
                 p{
                     font-size: 14px;
@@ -86,7 +88,9 @@
         .chat{
             background-color: #2E2E33;
             flex: 2;
-            
+            .chat_Info{
+                text-align: left;
+            }
         }
     }
 }
