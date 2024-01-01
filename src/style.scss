@@ -1,3 +1,20 @@
+@mixin mobile{
+    @media screen and (max-width:480px){
+        @content;
+    }
+}
+@mixin tablet{
+    @media screen and (max-width:768px){
+        @content;
+    }
+}
+@mixin laptop{
+    @media screen and (max-width:1200px){
+        @content;
+    }
+}
+
+
 .home{
     background-color: #171719;
     display: flex;
@@ -13,10 +30,15 @@
         height: 95%;
         flex-direction: row;
         overflow: hidden;
+        @include tablet{
+            width: 100%;
+            height: 100%;
+        }
         .sidebar{
             background-color: #393940;
             flex: 1;
             border-right: 1px solid #3e3c61;
+            position: relative;
             .navbar{
                 display: flex;
                 align-items: center;
@@ -27,6 +49,9 @@
                 color: #ddddf7;
                 .logo{
                     font-weight: bold;
+                    @include tablet{
+                        display: none;
+                    }
                 }
                 .user{
                     display: flex;
@@ -38,6 +63,10 @@
                     font: 10px;
                     border: none;
                     cursor: pointer;
+                    @include tablet{
+                       position: absolute;
+                       bottom: 10px;
+                    }
                 }
                 
                
@@ -90,6 +119,102 @@
             flex: 2;
             .chat_Info{
                 text-align: left;
+                height: 50px;
+                background-color: #393940;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 10px;
+                color: lightgray;
+            }
+            .chatIcons{
+                display: flex;
+                gap: 10px;
+
+            }
+            .messages{
+                background-color: #ddddf7;
+                padding: 10px;
+                height:calc(100% - 160px) ;
+                overflow: scroll;
+
+                .message{
+                    display: flex;
+                    gap:20px;
+                    margin-bottom: 20px;
+                    .messageInfo{
+                        display: flex;
+                        flex-direction: column;
+                        color:gray ;
+                        font-weight: 300;
+                        img{
+                            width: 40px;
+                            height: 40px;
+                            border-radius: 50%;
+                            object-fit: cover;
+                        }
+                    }.messageContent{
+                        max-width: 80%;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 10px;
+
+                        p{
+                            background-color: white;
+                            padding: 10px 20px;
+                            border-radius: 0px 10px 10px 10px ;
+                            max-width: max-content;
+                        }
+                        img{
+                            width: 50%;
+                        }
+                    }
+                    &.owner{
+                        flex-direction: row-reverse;
+                        .messageContent{
+                            align-items: flex-end;
+                        p{
+                            background-color: #3e3c61;
+                            color: white;
+                            border-radius: 10px 0px 10px 10px;
+                        }
+                    }
+                    }
+                }
+            }
+            .input{
+                height: 50px;
+                background-color: white;
+                padding: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                input{
+                    width: 100%;
+                    border:none;
+                    outline: none;
+                    color:#393940;
+                    font-size: 18px;
+
+                    &::placeholder{
+                        color: lightgray;
+                    }
+                }
+
+                .send{
+                    display:flex;
+                    align-items: center;
+                    gap: 10px;
+                    cursor: pointer;
+
+                    button{
+                        border: none;
+                        padding: 10px 15px;
+                        color: white;
+                         background-color: #393940 ;
+                    }
+                }
             }
         }
     }
