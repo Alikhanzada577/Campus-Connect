@@ -5,6 +5,8 @@ import './Login.css';
 import { Link , useNavigate} from 'react-router-dom';
 import {signInWithEmailAndPassword  } from 'firebase/auth';
 import { auth } from './../../firebase/firebase-auth';
+
+
 const Login = () => {
   const navigate=useNavigate();
 const [values,setValues]=useState({
@@ -22,16 +24,18 @@ const handleSubmission = () => {
   }
   setErrorMsg("");
   setSubmitButtonDisabled(true);
+  
   signInWithEmailAndPassword(auth, values.email, values.pass)
-    .then(async(res) => {
+    .then(async (res) => {
       setSubmitButtonDisabled(false);
-      navigate("/");
+      console.log("Login successful:", res.user);
+      navigate("/Home");
     })
     .catch((err) => {
       setSubmitButtonDisabled(false);
+      console.error("Login error:", err.message);
       setErrorMsg(err.message);
     });
-    
 };
   return (
     <div className='container'>
