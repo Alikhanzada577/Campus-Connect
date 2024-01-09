@@ -25,14 +25,27 @@
     .containerr{
         border:1px solid white;
         display: flex;
-        border-radius: 10px;
-        width:95%;
-        height: 95%;
+        width:100%;
+        height: 100%;
         flex-direction: row;
         overflow: hidden;
         @include tablet{
             width: 100%;
             height: 100%;
+        }
+        .leftnav{
+            flex:0.15;
+            display: flex;
+            flex-direction: column;
+            
+            .icons{
+                height: 45vh;
+                padding: 35px 0px;
+            }
+            .icons:hover{
+                background-color: #2E2E33;
+                
+            }
         }
         .sidebar{
             background-color: #393940;
@@ -80,6 +93,7 @@
             }
             .search{
                 border-bottom: 1px solid gray;
+                text-align: left;
                 .searchForm{
                     padding: 10px;
 
