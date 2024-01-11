@@ -1,11 +1,17 @@
 import React from 'react'
 import "./../../style.scss";
-import Header from "./../../components/JobPortalComponents/Header/index";
+import AnnouncementCard from '../../components/AnnouncementsComponents/AnnouncementCard';
+import AnnouncementHeader from '../../components/AnnouncementsComponents/AnnouncementHeader';
 
 const Announcements = () => {
   return (
     <div>
-       Announcement
+      <AnnouncementHeader/>
+       <AnnouncementCard/>
+       <AnnouncementCard/>
+       <AnnouncementCard/>
+       <AnnouncementCard/>
+
     </div>
   )
 }
