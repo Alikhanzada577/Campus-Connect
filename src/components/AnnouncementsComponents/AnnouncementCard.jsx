@@ -1,8 +1,14 @@
-import React from 'react';
-import "./Announcements.css"
+import React,{useState} from 'react';
+import AnnouncementModal from './AnnouncementModal';
+import "./Announcements.css";
+
 
 const AnnouncementCard = () => {
     const tags = ["Media Fest","Musical Night","Food Stalls"];
+
+    const [showModal, setShowModal] = useState(false);
+    const closeModal=()=> setShowModal(false);
+
   return (
     <div className='AnnouncementCard'>
       <div className='CardMain'>
@@ -19,7 +25,9 @@ const AnnouncementCard = () => {
                   <div className='AnnouncementImage'>
                   <img src='https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/10/free-images.jpg' alt=''/>
                   </div>
-                  <button>view</button>
+                  <button className="modal-btn" onClick={()=>setShowModal(true)}>view</button>
+                  {showModal &&  <AnnouncementModal closeModal={closeModal}/>}
+                 
         </div>
       </div>
     </div>
