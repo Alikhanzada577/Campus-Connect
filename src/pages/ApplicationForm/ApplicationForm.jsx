@@ -4,8 +4,8 @@ import LeftNav from '../../components/LeftNav/LeftNav';
 
 const ApplicationForm = () => {
   return (
-    <div className='home'>
-      <div className='containerr'>
+    <div>
+      <div>
       <LeftNav/>
       </div>
     </div>

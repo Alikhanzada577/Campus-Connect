@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 const JobCard = () => {
     const skills = ["JavaScript","React","Nodejs"];
     const date1=dayjs(Date.now());
-    const diffInDays=date1.diff('2023-10-28','day');
+    const diffInDays=date1.diff('2023-10-6','day');
   return (
     <div className='Card-main'>
       <div className='Card'>
