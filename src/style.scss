@@ -302,14 +302,18 @@
     flex-direction: row;
     background:  #2E2E33;
     height: 100vh;
-   
+    .Navigation{
+        flex:0.12;
+    }
+    .form{
+        flex:3;
+        
+    }
 }
 .applicationForm{
-.Navigation{
-    flex:0.12;
-}
-.form{
-    flex:3;
-    
-}
+    display: flex;
+    justify-content: space-between;
+    margin:12.5% 0;
+    align-items: center;
+    flex-direction: column;
 }
