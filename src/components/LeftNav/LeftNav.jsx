@@ -10,26 +10,26 @@ function LeftNav() {
   return (
     <div className="leftnav">
         <Link to="/home"><div className='icons'>
-            <MessageIcon style={{ color:'white'}} ></MessageIcon>
+            <MessageIcon style={{ color:'white',transform: "translate(0, 100%)"}} ></MessageIcon>
         </div>
         </Link>
         <Link   to="/Communities"> <div className='icons'>
                 <PeopleIcon 
                 fontSize='large'
-                style={{ color:'white'}}
+                style={{ color:'white',transform: "translate(0, 100%)"}}
                 ></PeopleIcon>
             </div>
         </Link>
         <Link to="/Announcements"><div className='icons'>
-            <CampaignOutlinedIcon fontSize='large' style={{ color:'white'}}></CampaignOutlinedIcon>
+            <CampaignOutlinedIcon fontSize='large' style={{ color:'white',transform: "translate(0, 100%)"}}></CampaignOutlinedIcon>
         </div>
         </Link>
         <Link to="/JobPortal"><div className='icons'>
-            <AssuredWorkloadOutlinedIcon fontSize='large' style={{ color:'white'}}></AssuredWorkloadOutlinedIcon>
+            <AssuredWorkloadOutlinedIcon fontSize='large' style={{ color:'white',transform: "translate(0, 100%)"}}></AssuredWorkloadOutlinedIcon>
         </div>
         </Link>
         <Link to="/ApplicationForm"><div className='icons'>
-            <ContactPageOutlinedIcon fontSize='large' style={{ color:'white'}}></ContactPageOutlinedIcon>
+            <ContactPageOutlinedIcon fontSize='large' style={{ color:'white',transform: "translate(0, 100%)"}}></ContactPageOutlinedIcon>
         </div>
         </Link>
     </div>

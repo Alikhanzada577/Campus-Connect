@@ -7,17 +7,16 @@ import LeftNav from '../../components/LeftNav/LeftNav';
 
 const JobPortal = () => {
   return (
-    <div className='Jobportal'  style={{ backgroundColor: '#45454C',height:'100%'}}>
-      <div>
+    <div className='jobportal'>
+      <div className='Navigation'>
         <LeftNav/>
       </div>
-      <div>
+      <div className='main'>
         <Header/>
        <SearchBar/>
        <JobCard/>
        <JobCard/>
-       <JobCard/>
-       <JobCard/>
+       
        </div>
     </div>
   )

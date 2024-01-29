@@ -7,12 +7,11 @@ import LeftNav from '../../components/LeftNav/LeftNav';
 const Announcements = () => {
   return (
     <div className='AnnouncementSection'>
-      <div>
+      <div className='Navigation'>
       <LeftNav/>
       </div>
-      <div>
+      <div className='main'>
       <AnnouncementHeader/>
-       <AnnouncementCard/>
        <AnnouncementCard/>
        <AnnouncementCard/>
        <AnnouncementCard/>
