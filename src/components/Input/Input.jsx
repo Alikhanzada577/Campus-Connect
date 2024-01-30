@@ -68,10 +68,16 @@ const Input = () => {
 
       setText("");
       setImg(null);
+      
   };
+    const handleKeyPress = (e)=>{
+      if(e.key==='Enter'){
+        handleSend();
+      }
+    };
   return (
     <div className='input'>
-      <input type="text" placeholder='your message...'onChange={(e)=>setText(e.target.value)} value={text}/>
+      <input type="text" placeholder='your message...'onChange={(e)=>setText(e.target.value)} value={text} onKeyPress={handleKeyPress}/>
       <div className="send">
         <AttachFileIcon></AttachFileIcon>
         <input type='file' style={{display:"none"}} id='file' onChange={(e)=>setImg(e.target.files[0])}/>

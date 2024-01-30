@@ -2,6 +2,8 @@ import React from 'react'
 import "./../../style.scss";
 import LeftNav from '../../components/LeftNav/LeftNav';
 import FormSubmission from '../../components/Application/FormSubmission';
+import Header from '../../components/Application/Header';
+
 
 const ApplicationForm = () => {
   return (
@@ -10,6 +12,7 @@ const ApplicationForm = () => {
       <LeftNav/>
       </div>
       <div className='form'>
+        <Header/>
         <FormSubmission/>
       </div>
     </div>
