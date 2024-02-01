@@ -40,7 +40,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: #171719;
+    background-color: #007AFF;
     height: 100vh;
     
     .icons{
@@ -48,24 +48,25 @@
         padding: 10px 0;
     }
     .icons:hover{
-        background-color: #2E2E33;
+        background-color: #141460;
         
     }
 }
 
 .sidebar{
-    background-color: #393940;
+    background-color: #ffffff;
     flex: 1;
     border-right: 1px solid #3e3c61;
     position: relative; 
+    color: black;
     .navbar{
         display: flex;
         align-items: center;
-        background-color: #2E2E33;
+        background-color: #DDDDDD;
         height: 50px;
         padding: 10px;
         justify-content: space-between;
-        color: #ddddf7;
+        color: black;
         .logo{
             font-weight: bold;
             @include tablet{
@@ -84,7 +85,7 @@
             }
         }
         button{
-            background-color:#393940 ;
+            background-color:#0F82FF ;
             color:#ddddf7 ;
             font: 10px;
             border: none;
@@ -106,11 +107,11 @@
             input{
                 background-color:transparent;
                 border: none;
-                color: white;
+                color: black;
                 outline: none;
 
                 &::placeholder{
-                    color: white;
+                    color: black;
                 }
              }
         }
@@ -125,12 +126,12 @@
        display: flex;
        align-items: center;
        gap: 10px;
-       color: white;
+       color: black;
        cursor: pointer;
        width: 95.5%;
        text-align: left;
        &:hover{
-        background-color: #28282b;
+        background-color: #DDDDDD;
        }
        .userChatInfo{
         span{
@@ -140,7 +141,7 @@
         }
         p{
             font-size: 14px;
-            color:lightgray;
+            color:black;
         }
        }
     }
@@ -148,17 +149,17 @@
 }
 
 .chat{
-    background-color: #2E2E33;
+    background-color: #F6F6F6;
     flex: 2;
     .chat_Info{
         text-align: left;
         height: 50px;
-        background-color: #393940;
+        background-color: #F6F6F6;
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: 10px;
-        color: lightgray;
+        color: black;
     }
     .chatIcons{
         display: flex;
@@ -170,7 +171,7 @@
         display: none; 
       }
     .messages{
-        background-color: #4a4a53;
+        background-color: white;
         padding: 10px;
         height:calc(100% - 160px) ;
         overflow: scroll;
@@ -199,7 +200,7 @@
                 gap: 10px;
 
                 p{
-                    background-color: white;
+                    background-color: #007AFF;
                     padding: 10px 20px;
                     border-radius: 0px 10px 10px 10px ;
                     max-width: max-content;
@@ -215,7 +216,7 @@
                 .messageContent{
                     align-items: flex-end;
                 p{
-                    background-color: #3e3c61;
+                    background-color: #001835;
                     color: white;
                     border-radius: 10px 0px 10px 10px;
                 }
@@ -253,7 +254,7 @@
                 border: none;
                 padding: 10px 15px;
                 color: white;
-                 background-color: #393940 ;
+                 background-color: #0F82FF ;
             }
         }
     }
@@ -263,7 +264,7 @@
 .AnnouncementSection{
     display: flex;
     flex-direction: row;
-    background: #2E2E33;
+    background: #DDDDDD;
     height: 100vh;
     .Navigation{
         width: auto;
@@ -284,7 +285,7 @@
 .jobportal{
     display: flex;
     flex-direction: row;
-    background: #28282b;
+    background: #DDDDDD;
     height: 100vh;
     
     
@@ -311,7 +312,7 @@
 .application{
     display: flex;
     flex-direction: row;
-    background:  #2E2E33;
+    background:  #DDDDDD;
     height: 100vh;
     .Navigation{
         flex:0.12;
