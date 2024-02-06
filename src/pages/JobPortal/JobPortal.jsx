@@ -4,6 +4,7 @@ import SearchBar from '../../components/JobPortalComponents/SearchBar/index';
 import JobCard from '../../components/JobPortalComponents/JobCard';
 import '../../style.scss';
 import LeftNav from '../../components/LeftNav/LeftNav';
+import JobForm from '../../components/JobPortalComponents/JobForm/JobForm';
 
 const JobPortal = () => {
   return (
@@ -15,9 +16,9 @@ const JobPortal = () => {
         <Header/>
        <SearchBar/>
        <JobCard/>
-       <JobCard/>
-       
+       <JobForm/>
        </div>
+       
     </div>
   )
 }

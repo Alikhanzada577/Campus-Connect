@@ -183,5 +183,9 @@ select{
     }
 }
 
+.check-boxes{
+    display: flex;
+    flex-direction: row;
+}
 
 
