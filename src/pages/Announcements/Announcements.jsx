@@ -3,6 +3,7 @@ import "./../../style.scss";
 import AnnouncementCard from '../../components/AnnouncementsComponents/AnnouncementCard';
 import AnnouncementHeader from '../../components/AnnouncementsComponents/AnnouncementHeader';
 import LeftNav from '../../components/LeftNav/LeftNav';
+import AnnouncementForm from '../../components/AnnouncementsComponents/AnnouncementForm';
 
 const Announcements = () => {
   return (
@@ -13,8 +14,7 @@ const Announcements = () => {
       <div className='main'>
       <AnnouncementHeader/>
        <AnnouncementCard/>
-       <AnnouncementCard/>
-       <AnnouncementCard/>
+      <AnnouncementForm/>
        </div>
     </div>
   )
