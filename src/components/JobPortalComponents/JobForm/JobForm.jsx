@@ -1,9 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { FormControlLabel, Checkbox, FormGroup } from '@mui/material';
 
 const JobForm = () => {
+    const [tags, setTags] = useState([]);
+    const handleTagInput = (event) => {
+        const inputTags = event.target.value.split(/[ ,]+/); 
+        setTags(inputTags.filter(tag => tag.trim() !== ''));
+      };
   return (
     <div className='applicationForm'>
         <h2>Create Job</h2>
@@ -18,6 +23,7 @@ const JobForm = () => {
     />
     <TextField label='Job Tags'
       sx={{ width: 400, marginBottom: 1 }}
+      onChange={handleTagInput}
     />
      <FormGroup>
      <h4>Timings</h4>

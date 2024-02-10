@@ -1,8 +1,14 @@
-import React from 'react'
+import React,{useState} from 'react'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import './Announcements.css'
 const AnnouncementForm = () => {
+    const [tags, setTags] = useState([]);
+    const handleTagInput = (event) => {
+        const inputTags = event.target.value.split(/[ ,]+/); 
+        setTags(inputTags.filter(tag => tag.trim() !== ''));
+      };
+     
   return (
     <div className='AnnouncementForm'>
         <h2>Annoucement Form</h2>
@@ -14,9 +20,12 @@ const AnnouncementForm = () => {
         rows={2}
         maxRows={4}
         sx={{ width: 400, marginBottom: 1 }}/>
-        <TextField label='Tags'
-            sx={{ width: 400, marginBottom: 1 }}
-             />
+        
+      <TextField
+        label='Tags'
+        sx={{ width: 400, marginBottom: 1 }}
+        onChange={handleTagInput}
+      />   
         <input type="file" />
         <Button
         component='label'
