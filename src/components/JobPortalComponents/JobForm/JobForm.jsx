@@ -70,32 +70,28 @@ const JobForm = () => {
         <div className='applicationForm'>
             <h2>Create Job</h2>
             <TextField 
-              label='Job Title' 
-              id='jobTitle'
+              label='Job Title'
               sx={{ width: 400, marginBottom: 1, color: 'black' }}
               onChange={(e) => setTitle(e.target.value)}
               value={title} // Use title state directly as value
           />
           <TextField 
-              label='Company Name' 
-              id='companyName'
+              label='Company Name'
               sx={{ width: 400, marginBottom: 1 }}
               onChange={(e) => setCompany(e.target.value)}
               value={company} // Use company state directly as value
           />
           <TextField 
-              label='Experience' 
-              id='experience'
+              label='Experience'
               sx={{ width: 400, marginBottom: 1 }}
               onChange={(e) => setExperience(e.target.value)}
               value={experience} // Use experience state directly as value
           />
           <TextField 
-              label='Job Tags' 
-              id='jobTags'
+              label='Job Tags'
               sx={{ width: 400, marginBottom: 1 }}
               onChange={handleTagInput}
-              // Convert tags array to string and use directly as value
+              
           />
 
 <FormGroup>
