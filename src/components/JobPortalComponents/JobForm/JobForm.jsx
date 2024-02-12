@@ -19,22 +19,12 @@ const JobForm = () => {
     };
 
     const handleTimingChange = (isFullTimeSelected) => {
-      setIsFullTime(isFullTimeSelected);
-      if (isFullTimeSelected) {
-        setIsFullTime(true); // Ensure only one option is selected for location
-      } else {
-        setIsFullTime(false);
-      }
-  };
-  
-  const handleLocationChange = (isInOfficeSelected) => {
-      setIsInOffice(isInOfficeSelected);
-      if (isInOfficeSelected) {
-        setIsInOffice(true);// Ensure only one option is selected for timing
-      } else {
-        setIsInOffice(false);
-      }
-  };
+        setIsFullTime(isFullTimeSelected);
+    };
+    
+    const handleLocationChange = (isInOfficeSelected) => {
+        setIsInOffice(isInOfficeSelected);
+    };
   
 
     const handleSubmit = async () => {

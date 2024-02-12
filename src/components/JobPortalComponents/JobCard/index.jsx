@@ -2,20 +2,20 @@ import React from 'react'
 import './../job.css';
 import dayjs from 'dayjs';
 
-const JobCard = () => {
-    const skills = ["JavaScript","React","Nodejs"];
+const JobCard = ({job}) => {
+  const{title,tags,isFulltime,isInOffice,experience,company}=job;
     const date1=dayjs(Date.now());
-    const diffInDays=date1.diff('2023-10-6','day');
+    const diffInDays=date1.diff('2023-10-9','day');
   return (
-    <div className='Card-main'>
+    <div className='Card-main'> 
       <div className='Card'>
             <div className='Card-left'>
-                <h1>FrontEnd Developer - Amazon</h1>
-                <p>Full Time &#x2022; Fresher &#x2022; In-Office</p>
+                <h1>{title} - {company}</h1>
+                <p>{isFulltime ? "Full Time" : "Part Time"} &#x2022; {experience} &#x2022; {isInOffice ? "In Office" : "Remote"}</p>
                         <div>
-                            {skills.map((skill,index)=>(
-                                    <p key={index}>{skill}</p>
-                                    ))}
+                        {tags && tags.map((tag, index) => (
+                            <p key={index}>{tag}</p>
+                        ))}
                         </div>
                 </div>
              <div className='Card-right'>
