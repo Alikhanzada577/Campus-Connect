@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import './Announcements.css';
-const AnnouncementModal=({ closeModal, title, description, imageUrl })=>{
+import './application.css';
+const AnnouncementModal=({closeModal,applicationPurpose,email,enrollment,name,fileUrl})=>{
     useEffect(()=>{
         document.body.style.overflowY="hidden";
         return ()=>{document.body.style.overflowY="scroll";};
@@ -10,13 +10,20 @@ const AnnouncementModal=({ closeModal, title, description, imageUrl })=>{
       <div className="modal-wrapper" onClick={closeModal}></div>
       <div className="modal-container">
         <div className='data-container'>
-        <h2>{title}</h2>
-        <p> {description}</p> 
+        <h3>Application Purpose</h3>
+        <h3>{applicationPurpose}</h3>
+        <h3>Enrollment</h3>
+        <h3>{enrollment}</h3>
+        <h3>Name</h3>
+        <h3>{name}</h3>
+        <h3>Email</h3>
+        <h3>{email}</h3>
+
         </div>
         <div className='image-container'>
-            <img src={imageUrl} alt="" />
+            <img src={fileUrl}alt="" />
         </div>
-        {/* <button className='modal-btn' onClick={closeModal}>Close</button> */}
+        
         </div>
         
       </>
