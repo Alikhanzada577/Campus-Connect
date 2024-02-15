@@ -34,7 +34,7 @@ const ApplicationForm = () => {
       </div>
       <div className='form'>
         <Header/>
-        <FormSubmission/>
+        <FormSubmission/> 
         {applications.map(application => (
           <ApplicationCard key={application.id} application={application} />
         ))}

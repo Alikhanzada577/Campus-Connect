@@ -1,3 +1,5 @@
+
+
 .applicationCard{
     margin: 1rem 8rem 1rem 8rem;
   
@@ -14,6 +16,7 @@
     border: 1px solid black;
     background-color: #D4D4D4;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    
 
     .Card-info{
         display: flex;
@@ -40,7 +43,7 @@
     .CardView{
         margin: 1.5rem 0rem 1.5rem 1.5rem;
             
-        .AnnouncementImage{
+        .applicationImage{
             img{
             height: 6rem;
             width: 6rem;
@@ -117,5 +120,43 @@
 .applicationForm{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; 
 }
+
+@media screen and (min-width: 480px) {
+    .CardMain{
+        display: flex;
+        flex-direction:column-reverse;
+        height: fit-content;
+        margin: auto;
+        .CardView{
+            justify-content: flex-start;
+            margin: auto;
+        }
+        .Card-info{
+            margin: auto;
+        }
+    }
+  }
+  @media screen and (min-width: 768px) {
+    .CardMain{
+        display: flex;
+        flex-direction:row;
+        height: fit-content;
+        padding: 0;
+
+        .CardView{
+            display: flex;
+            justify-content: flex-end;
+            margin: 0;
+            .modal-btn{
+                height: 200%;
+            }
+
+        }
+        .Card-info{
+            margin: 5px;
+        }
+    }
+  }
+

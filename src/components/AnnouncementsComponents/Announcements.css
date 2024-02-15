@@ -24,6 +24,7 @@
             font-size: 1.125rem;
             font-weight: 600;
             margin-top: 0.5rem;
+            text-align: start;
         }
         div{
             display: flex;
@@ -119,3 +120,44 @@
     flex-direction: column;
     align-items: center;
 }
+
+@media screen and (min-width: 480px) {
+    .CardMain{
+        display: flex;
+        flex-direction:column-reverse;
+        height: fit-content;
+        margin: auto;
+        .CardView{
+            justify-content: flex-start;
+            margin: auto;
+        }
+        .Card-info{
+            margin: auto;
+            h1{
+            text-align: center;
+            }
+        }
+    }
+  }
+@media screen and (min-width: 768px) {
+    .CardMain{
+        display: flex;
+        flex-direction:row;
+        height: fit-content;
+        padding: 0;
+
+        .CardView{
+            display: flex;
+            justify-content: flex-end;
+            margin: 0;
+            .modal-btn{
+                height: 200%;
+            }
+
+        }
+        .Card-info{
+            margin: 5px;
+           
+        }
+    }
+  }

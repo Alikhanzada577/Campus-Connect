@@ -15,7 +15,7 @@ const ApplicationCard = ({application}) => {
                     <h1>{applicationPurpose}</h1>
                     <h2>{enrollment}</h2>
                 </div>
-                <div className='CardView'>
+                <div className='CardView'> 
                     <div className='applicationImage'>
                         <img src={fileUrl} alt='Application' />
                         
