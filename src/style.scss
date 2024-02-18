@@ -263,8 +263,6 @@
 //Zoom
 .zoom{
     height:calc(100%);
-    background: black;
-    color: white;
 }
 //AnnouncementSection
 .AnnouncementSection{
@@ -337,4 +335,8 @@
 }
 .applicationHeader{
     margin: 4% 0 0 0;
+}
+
+#zmmtg-root {
+    display: none;
 }

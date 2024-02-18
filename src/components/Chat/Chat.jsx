@@ -25,12 +25,13 @@ const Chat = () => {
         </div>       
       </div>
       {showVideo ? (
-        <>
+        
+        <Zoom/>
+      ) : (
+       <>
           <Messages />
           <Input/>
         </>
-      ) : (
-        <Zoom/>
       )}
     </div>
   )
