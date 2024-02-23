@@ -1,15 +1,15 @@
 import React from 'react'
 import "./../../style.scss";
 import LeftNav from '../../components/LeftNav/LeftNav';
-import Sidebar from './../../components/Sidebar/Sidebar';
-import Chat from './../../components/Chat/Chat';
+import CommunitySidebar from '../../components/CommunityComponents/CommunitySidebar';
+import CommunityChat from '../../components/CommunityComponents/CommunityChat';
 const Communities = () => {
   return (
     <div className='home'>
       <div className="containerr">
       <LeftNav/>
-      <Sidebar/>
-      <Chat/>
+      <CommunitySidebar/>
+      <CommunityChat/>
      </div>
     </div>
   )
