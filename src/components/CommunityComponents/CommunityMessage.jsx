@@ -1,23 +1,19 @@
-import React from 'react'
+import React from 'react';
 
-const CommunityMessage = () => {
+const CommunityMessage = ({ message, isOwnMessage }) => {
+  const { displayName, text } = message;
+
   return (
-    <div
-      className="message">
+    <div className={`message ${isOwnMessage ? 'owner' : ''}`}>
       <div className='messageInfo'>
-       
         <img src="" alt=''/>
-        <span>just now </span>
-        </div> 
-     <div className='messageContent'>
-      <p>MessageText</p>
-      <img 
-      src=""
-      alt=''/>
-     </div>
-      
+        <span>{displayName}</span>
+      </div> 
+      <div className='messageContent'>
+        <p>{text}</p>
+      </div>
     </div>
-  )
+  );
 }
 
-export default CommunityMessage
+export default CommunityMessage;

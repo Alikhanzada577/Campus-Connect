@@ -1,13 +1,14 @@
 import React from 'react';
 import Navbar from '../Navbar/Navbar';
 import CommunityChats from './CommunityChats';
-const CommunitySidebar = () => {
+
+const CommunitySidebar = ({ onChatRoomClick }) => {
   return (
     <div className='sidebar'>
-      <Navbar/>
-      <CommunityChats/>
+      <Navbar />
+      <CommunityChats onChatRoomClick={onChatRoomClick} />
     </div>
-  )
-}
+  );
+};
 
-export default CommunitySidebar
+export default CommunitySidebar;

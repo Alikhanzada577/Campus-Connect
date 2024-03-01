@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useRef } from 'react'
 import { AuthContext } from '../../context/AuthContext'  ;
 import { ChatContext } from '../../context/ChatContext';
-import { Timestamp } from 'firebase/firestore';
 
 const Message = ({message}) => {
 

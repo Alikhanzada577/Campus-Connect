@@ -1,18 +1,20 @@
+// CommunityChats.js
 import React from 'react';
+import { chatRooms } from './ChatRooms';
 
-const CommunityChats = () => {
+const CommunityChats = ({ onChatRoomClick }) => {
   return (
     <div className='chats'>
-   
-      <div className="userChat">
-                    <img src="" alt='profile image'/>
+      {chatRooms.map((room) => (
+        <div className="userChat" key={room.id} onClick={() => onChatRoomClick(room.title)}>
           <div className="userChatInfo">
-              <span>Community Name</span>
-              <p>Last Message</p>
+            <span>{room.title}</span>
+            <p>Last Message</p>
           </div>
-      </div>
-  </div>
-  )
-}
+        </div>
+      ))}
+    </div>
+  );
+};
 
-export default CommunityChats
+export default CommunityChats;
