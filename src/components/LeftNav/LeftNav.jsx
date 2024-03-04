@@ -4,36 +4,54 @@ import PeopleIcon from '@mui/icons-material/People';
 import CampaignOutlinedIcon from '@mui/icons-material/CampaignOutlined';
 import AssuredWorkloadOutlinedIcon from '@mui/icons-material/AssuredWorkloadOutlined';
 import ContactPageOutlinedIcon from '@mui/icons-material/ContactPageOutlined';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import Tooltip from '@mui/material/Tooltip';
 
 function LeftNav() {
+  const location = useLocation();
+
   return (
     <div className="leftnav">
-        <Link to="/home"><div className='icons'>
-            <MessageIcon style={{ color:'white',transform: "translate(0, 100%)"}} ></MessageIcon>
-        </div>
+        <Link to="/home">
+            <Tooltip title="Messages" placement="right">
+                <div className={`icons ${location.pathname === '/home' ? 'active' : ''}`}>
+                    <MessageIcon style={{ color:'white',transform: "translate(0, 100%)"}} ></MessageIcon>
+                </div>
+            </Tooltip>
         </Link>
-        <Link   to="/Communities"> <div className='icons'>
-                <PeopleIcon 
-                fontSize='large'
-                style={{ color:'white',transform: "translate(0, 100%)"}}
-                ></PeopleIcon>
-            </div>
+        <Link to="/Communities">
+            <Tooltip title="Communities" placement="right">
+                <div className={`icons ${location.pathname === '/Communities' ? 'active' : ''}`}>
+                    <PeopleIcon 
+                        fontSize='large'
+                        style={{ color:'white',transform: "translate(0, 100%)"}}
+                    ></PeopleIcon>
+                </div>
+            </Tooltip>
         </Link>
-        <Link to="/Announcements"><div className='icons'>
-            <CampaignOutlinedIcon fontSize='large' style={{ color:'white',transform: "translate(0, 100%)"}}></CampaignOutlinedIcon>
-        </div>
+        <Link to="/Announcements">
+            <Tooltip title="Announcements" placement="right">
+                <div className={`icons ${location.pathname === '/Announcements' ? 'active' : ''}`}>
+                    <CampaignOutlinedIcon fontSize='large' style={{ color:'white',transform: "translate(0, 100%)"}}></CampaignOutlinedIcon>
+                </div>
+            </Tooltip>
         </Link>
-        <Link to="/JobPortal"><div className='icons'>
-            <AssuredWorkloadOutlinedIcon fontSize='large' style={{ color:'white',transform: "translate(0, 100%)"}}></AssuredWorkloadOutlinedIcon>
-        </div>
+        <Link to="/JobPortal">
+            <Tooltip title="Job Portal" placement="right">
+                <div className={`icons ${location.pathname === '/JobPortal' ? 'active' : ''}`}>
+                    <AssuredWorkloadOutlinedIcon fontSize='large' style={{ color:'white',transform: "translate(0, 100%)"}}></AssuredWorkloadOutlinedIcon>
+                </div>
+            </Tooltip>
         </Link>
-        <Link to="/ApplicationForm"><div className='icons'>
-            <ContactPageOutlinedIcon fontSize='large' style={{ color:'white',transform: "translate(0, 100%)"}}></ContactPageOutlinedIcon>
-        </div>
+        <Link to="/ApplicationForm">
+            <Tooltip title="Application Form" placement="right">
+                <div className={`icons ${location.pathname === '/ApplicationForm' ? 'active' : ''}`}>
+                    <ContactPageOutlinedIcon fontSize='large' style={{ color:'white',transform: "translate(0, 100%)"}}></ContactPageOutlinedIcon>
+                </div>
+            </Tooltip>
         </Link>
     </div>
   )
 }
 
-export default LeftNav
+export default LeftNav;

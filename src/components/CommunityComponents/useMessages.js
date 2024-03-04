@@ -36,4 +36,4 @@ function getMessages(roomId, callback) {
 
     return messages;
 }
-export { useMessages };
+export { useMessages,getMessages };
