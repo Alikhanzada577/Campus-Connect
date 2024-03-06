@@ -13,6 +13,7 @@
     "@testing-library/user-event": "^13.5.0",
     "@zoom/meetingsdk": "^3.1.6",
     "@zoom/videosdk": "^1.10.7",
+    "@zoomus/websdk": "^2.18.3",
     "dayjs": "^1.11.10",
     "firebase": "^10.7.0",
     "mui-file-input": "^4.0.3",

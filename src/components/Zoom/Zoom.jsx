@@ -1,5 +1,8 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import './../../style.scss'
+import { Link } from 'react-router-dom';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 import { ZoomMtg } from '@zoom/meetingsdk'
 
 
@@ -9,10 +12,12 @@ ZoomMtg.prepareWebSDK();
 
 const Zoom = () => {
 
+  const [meetingCode, setMeetingCode] = useState("");
+  const [passCode, setPassCode] = useState('');
   var authEndpoint = 'https://zoom.us/oauth/authorize?client_id=_SOZ3WQsSUSkOdhDyHdH6g&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2F'
   var sdkKey = '_SOZ3WQsSUSkOdhDyHdH6g'
-  var meetingNumber = '81367310934'
-  var passWord = ''
+  var meetingNumber = meetingCode
+  var passWord = passCode
   var role = 1
   var userName = 'Ali'
   var userEmail = 'muhammadali94200@gmail.com'
@@ -86,8 +91,28 @@ const Zoom = () => {
   
 
   return (
+    
     <div className='zoom'>
-      <button onClick={getSignature}>Join Meeting</button>
+     <Link to='https://zoom.us/meeting/schedule' target="_blank" rel="noopener noreferrer">
+      <Button variant="contained" 
+       sx={{width: 400, marginTop:2,}}>
+      Create Meeting 
+       </Button>
+       </Link>
+      <p>OR</p>
+      
+      <TextField sx={{width: 400,marginBottom:1,}}
+      label="Meeting Code"
+      value={meetingCode}
+      onChange={(e) => setMeetingCode(e.target.value)}       />
+         <TextField sx={{width: 400,marginBottom:1,}}
+      label="PassCode"
+      value={passCode}
+      onChange={(e) => setPassCode(e.target.value)}       />
+       <Button variant="contained" 
+       sx={{width: 400, marginTop:2,}} onClick={getSignature}>
+      Join Meeting 
+       </Button>
     </div>
   )
 }
