@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useContext } from 'react';
 import "./../../style.scss";
 import { db } from '../../firebase/firebase-auth';
 import AnnouncementCard from '../../components/AnnouncementsComponents/AnnouncementCard';
@@ -6,8 +6,10 @@ import AnnouncementHeader from '../../components/AnnouncementsComponents/Announc
 import LeftNav from '../../components/LeftNav/LeftNav';
 import AnnouncementForm from '../../components/AnnouncementsComponents/AnnouncementForm';
 import { collection, getDocs } from 'firebase/firestore';
+import { AuthContext } from '../../context/AuthContext';
 
 const Announcements = () => {
+  const { currentUser } = useContext(AuthContext);
   const [announcements, setAnnouncements] = useState([]); 
 
   useEffect(() => {
@@ -36,7 +38,9 @@ const Announcements = () => {
         {announcements.map(announcement => (
           <AnnouncementCard key={announcement.id} announcement={announcement} />
         ))}
-        <AnnouncementForm />
+         {currentUser && currentUser.role === 'admin' && (
+          <AnnouncementForm />
+        )}
       </div>
     </div>
   );

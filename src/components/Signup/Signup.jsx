@@ -11,70 +11,80 @@ import { doc, setDoc } from "firebase/firestore";
 
 const Signup = () => {
   const navigate=useNavigate();
-const [values,setValues]=useState({
- name: "",
- email: "",
- pass: "",
- file:null,
-});
+  const [values,setValues]=useState({
+    name: "",
+    email: "",
+    pass: "",
+    file:null,
+  });
 
-const [errorMsg, setErrorMsg] = useState("");
-const[submitButtonDisabled,setSubmitButtonDisabled]=useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+  const[submitButtonDisabled,setSubmitButtonDisabled]=useState(false);
 
-
-
-const handleSubmission = async () => {
-  try {
-    if (!values.name || !values.email || !values.pass || !values.file) {
-      setErrorMsg('Fill All Fields');
-      return;
-    }
-
-    setErrorMsg('');
-    setSubmitButtonDisabled(true);
-
-    const res = await createUserWithEmailAndPassword(auth, values.email, values.pass);
-    const user = res.user;
-
-    const storageRef = ref(storage, `${values.name}_${Date.now()}`);
-    const uploadTask = uploadBytesResumable(storageRef, values.file);
-
-    uploadTask.on(
-      'state_changed',
-      null,
-      (error) => {
-        setSubmitButtonDisabled(false);
-        setErrorMsg(error.message);
-      },
-      () => {
-        getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-          await updateProfile(user, {
-            displayName: values.name,
-            emailid: values.email,
-            photoURL: downloadURL,
-          });
-
-          await setDoc(doc(db, 'users', res.user.uid), {
-            uid: res.user.uid,
-            displayName: values.name,
-            emailid: values.email,
-            photoURL: downloadURL,
-          });
-
-          await setDoc(doc(db,"userChats",res.user.uid),{});
-          setSubmitButtonDisabled(false);
-          navigate('/');
-        });
-
-       
+  const handleSubmission = async () => {
+    try {
+      if (!values.name || !values.email || !values.pass || !values.file) {
+        setErrorMsg('Fill All Fields');
+        return;
       }
-    );
-  } catch (err) {
-    setSubmitButtonDisabled(false);
-    setErrorMsg(err.message);
-  }
-};
 
+      setErrorMsg('');
+      setSubmitButtonDisabled(true);
+
+      const res = await createUserWithEmailAndPassword(auth, values.email, values.pass);
+      const user = res.user;
+
+      
+      let role = '';
+      if (values.email.endsWith('@admin.bahria.edu.com')) {
+        role = 'admin';
+      } else if (values.email.endsWith('@teacher.bahria.edu.com')) {
+        role = 'teacher';
+      } else if (values.email.endsWith('@student.bahria.edu.com')) {
+        role = 'student';
+      } else if (values.email.endsWith('@alumni.bahria.edu.com')) {
+        role = 'alumni';
+      } else {
+        role = 'user';
+      }
+
+      const storageRef = ref(storage, `${values.name}_${Date.now()}`);
+      const uploadTask = uploadBytesResumable(storageRef, values.file);
+
+      uploadTask.on(
+        'state_changed',
+        null,
+        (error) => {
+          setSubmitButtonDisabled(false);
+          setErrorMsg(error.message);
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+            await updateProfile(user, {
+              displayName: values.name,
+              emailid: values.email,
+              photoURL: downloadURL,
+            });
+
+            await setDoc(doc(db, 'users', res.user.uid), {
+              uid: res.user.uid,
+              displayName: values.name,
+              emailid: values.email,
+              photoURL: downloadURL,
+              role: role, 
+            });
+
+            await setDoc(doc(db,"userChats",res.user.uid),{});
+            setSubmitButtonDisabled(false);
+            navigate('/');
+          });
+        }
+      );
+    } catch (err) {
+      setSubmitButtonDisabled(false);
+      setErrorMsg(err.message);
+    }
+  };
   
   return (
     <div className='container'>

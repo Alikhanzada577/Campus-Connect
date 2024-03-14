@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState,useEffect,useContext} from 'react';
 import Header from './../../components/JobPortalComponents/Header/index'
 import SearchBar from '../../components/JobPortalComponents/SearchBar/index';
 import JobCard from '../../components/JobPortalComponents/JobCard';
@@ -7,9 +7,11 @@ import LeftNav from '../../components/LeftNav/LeftNav';
 import JobForm from '../../components/JobPortalComponents/JobForm/JobForm';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../../firebase/firebase-auth';
+import { AuthContext } from '../../context/AuthContext';
 
 const JobPortal = () => {
   const [jobs, setJobs] = useState([]);
+  const {currentUser}=useContext(AuthContext);
   useEffect(() => {
    
     const fetchJobs = async () => {
@@ -37,7 +39,8 @@ const JobPortal = () => {
        {jobs.map(job=>(
        <JobCard key={job.id} job={job}/>
        ))}
-       <JobForm/>
+       {currentUser && currentUser.role==='admin' &&( <JobForm/>)}
+      
        </div>
        
     </div>

@@ -1,4 +1,4 @@
-import React,{ useState, useEffect }  from 'react'
+import React,{ useState, useEffect,useContext}  from 'react'
 import "./../../style.scss";
 import LeftNav from '../../components/LeftNav/LeftNav';
 import FormSubmission from '../../components/Application/FormSubmission';
@@ -6,9 +6,10 @@ import Header from '../../components/Application/Header';
 import ApplicationCard from '../../components/Application/ApplicationCard';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../../firebase/firebase-auth';
+import { AuthContext } from '../../context/AuthContext';
 
 const ApplicationForm = () => {
-
+  const { currentUser } = useContext(AuthContext);
   const [applications, setApplications] = useState([]); 
 
   useEffect(() => {
@@ -33,13 +34,14 @@ const ApplicationForm = () => {
       <LeftNav/>
       </div>
       <div className='form'>
-        <Header/>
-        <FormSubmission/> 
-        {applications.map(application => (
-          <ApplicationCard key={application.id} application={application} />
-        ))}
-       
-      </div> 
+      <Header />
+      {currentUser && currentUser.role === 'admin' && (
+        <FormSubmission />
+      )}
+      {applications.map((application) => (
+        <ApplicationCard key={application.id} application={application} />
+      ))}
+    </div>
     </div>
   )
 }
