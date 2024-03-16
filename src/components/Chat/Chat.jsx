@@ -26,7 +26,7 @@ const Chat = () => {
   };
 
   if (!data.user?.displayName) {
-    return <div className='chat'></div>; // Render an empty div if display name is not available
+    return <div className='chat'></div>; 
   }
 
   return (
