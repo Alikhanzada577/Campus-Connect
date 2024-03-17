@@ -42,7 +42,18 @@
     justify-content: space-between;
     background-color: #007AFF;
     height: 100vh;
-    
+    .user{
+        background-color: #001835;
+        display: flex;
+        padding: 10px;
+        justify-content: center;
+        img{
+            background-color: #3e3c62;
+            height: 5vh;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    }
     .icons {
         height: 17vh;
         padding: 10px 0;

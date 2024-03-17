@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import MessageIcon from '@mui/icons-material/Message';
 import PeopleIcon from '@mui/icons-material/People';
 import CampaignOutlinedIcon from '@mui/icons-material/CampaignOutlined';
@@ -6,8 +6,10 @@ import AssuredWorkloadOutlinedIcon from '@mui/icons-material/AssuredWorkloadOutl
 import ContactPageOutlinedIcon from '@mui/icons-material/ContactPageOutlined';
 import { Link, useLocation } from 'react-router-dom';
 import Tooltip from '@mui/material/Tooltip';
-
+import { AuthContext } from '../../context/AuthContext';
+import './../../style.scss';
 function LeftNav() {
+    const {currentUser}=useContext(AuthContext);
   const location = useLocation();
 
   return (
@@ -50,6 +52,9 @@ function LeftNav() {
                 </div>
             </Tooltip>
         </Link>
+        <div className='user'>
+        <img src={currentUser.photoURL} alt=''/>
+        </div>
     </div>
   )
 }
