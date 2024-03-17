@@ -124,10 +124,18 @@ function LeftNav() {
           vertical: "top",
           horizontal: "left",
         }}
+        PaperProps={{
+            style: {
+              backgroundColor: "#001835", 
+              width: "150px", 
+              padding: "10px", 
+              border:"2px solid white",
+            },
+          }}
       >
-        <div>
-          <button onClick={handleLogout}>Logout</button>
-        </div>
+       
+          <button style={{color:"white"}}onClick={handleLogout}>Logout</button>
+       
       </Popover>
     </div>
   );
