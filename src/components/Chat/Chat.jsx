@@ -32,6 +32,7 @@ const Chat = () => {
   return (
     <div className='chat'>
       <div className="chat_Info">
+        <img src={data.user.photoUrl}/>
         <span>{data.user.displayName}</span>
         <div className="chatIcons">
           <VideocamIcon onClick={toggleVideo}></VideocamIcon>
