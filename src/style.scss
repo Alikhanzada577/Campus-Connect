@@ -234,8 +234,19 @@
                 img{
                     width: 50%;
                     height: 70%;
-                    border: 2px solid white ;
+                    border: 2px solid #001835; ;
                 }
+                
+                a{
+                    display: flex;
+                    align-items: center;
+                    color: #DDDDDD;
+                    background-color:#007AFF ;
+                    padding: 10px;
+                    border-radius: 10px;
+                 
+                  }
+                
             }
             &.owner{
                 flex-direction: row-reverse;
@@ -246,6 +257,15 @@
                     color: white;
                     border-radius: 10px 0px 10px 10px;
                 }
+                a{
+                    display: flex;
+                    align-items: center;
+                    background-color:#001835;
+                    border: 1px solid white;
+                    padding: 10px;
+                    border-radius: 10px;
+                
+                  }
             }
             }
         }
