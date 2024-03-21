@@ -14,9 +14,6 @@ const Message = ({ message }) => {
   }, [message]);
 
   const renderMessageContent = () => {
-    console.log("Rendering message content...");
-    console.log("Files:", message.files);
-  
     let content = null;
   
     if (message.text) {
@@ -26,11 +23,11 @@ const Message = ({ message }) => {
     } else if (message.img && Array.isArray(message.img)) {
       content = message.img.map((image, index) => (
         <img key={index} src={image} alt={`Image ${index}`} />
-      )); // Render multiple images
+      ));
     }
   
     if (!message.files || message.files.length === 0) {
-      return content; // Return text or image content if no files
+      return content; 
     }
   
     const fileContent = message.files.map((file, index) => (

@@ -1,24 +1,26 @@
-import React,{ useState, useEffect,useContext}  from 'react'
+import React, { useState, useEffect, useContext } from "react";
 import "./../../style.scss";
-import LeftNav from '../../components/LeftNav/LeftNav';
-import FormSubmission from '../../components/Application/FormSubmission';
-import Header from '../../components/Application/Header';
-import ApplicationCard from '../../components/Application/ApplicationCard';
-import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../../firebase/firebase-auth';
-import { AuthContext } from '../../context/AuthContext';
+import LeftNav from "../../components/LeftNav/LeftNav";
+import FormSubmission from "../../components/Application/FormSubmission";
+import Header from "../../components/Application/Header";
+import ApplicationCard from "../../components/Application/ApplicationCard";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../firebase/firebase-auth";
+import { AuthContext } from "../../context/AuthContext";
 
 const ApplicationForm = () => {
   const { currentUser } = useContext(AuthContext);
-  const [applications, setApplications] = useState([]); 
+  const [applications, setApplications] = useState([]);
 
   useEffect(() => {
-   
     const fetchApplications = async () => {
       try {
-        const colref = collection(db, 'applications');
+        const colref = collection(db, "applications");
         const snapshot = await getDocs(colref);
-        const applicationsData = snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
+        const applicationsData = snapshot.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
         setApplications(applicationsData);
       } catch (error) {
         console.log(error.message);
@@ -26,24 +28,26 @@ const ApplicationForm = () => {
     };
 
     fetchApplications();
-  }, []); 
+  }, []);
 
   return (
-    <div className='application'>
-      <div className='Navigation'>
-      <LeftNav/>
+    <div className="application">
+      <div className="Navigation">
+        <LeftNav />
       </div>
-      <div className='form'>
-      <Header />
-      {currentUser && currentUser.role === 'admin' && (
-        <FormSubmission />
-      )}
-      {applications.map((application) => (
-        <ApplicationCard key={application.id} application={application} />
-      ))}
+      <div className="form">
+        <Header />
+      {currentUser && currentUser.role != 'admin' && <FormSubmission />}
+      
+       
+        {currentUser &&
+          currentUser.role === "admin" &&
+          applications.map((application) => (
+            <ApplicationCard key={application.id} application={application} />
+          ))}
+      </div>
     </div>
-    </div>
-  )
-}
+  );
+};
 
-export default ApplicationForm
+export default ApplicationForm;

@@ -69,7 +69,7 @@ const JobPortal = () => {
             <JobCard key={job.id} job={job} />
           ))}
         {currentUser && currentUser.role === 'admin' && <JobForm />}
-
+ 
       </div>
 
     </div>
