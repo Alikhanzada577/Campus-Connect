@@ -48,26 +48,30 @@ const JobPortal = () => {
         <Header />
         <SearchBar handleClick={handleClick} /> 
         {jobs
-          .filter((job) => {
-            let matchesFilter = true; 
-            for (const [key, value] of Object.entries(filter)) {
-              if (value) { 
-                if (key === "jobType" || key === "location") { 
-                  matchesFilter = value === job[key] || (key === "jobType" && value === "Part Time" && !job.isFulltime); 
-                } else {
-                  matchesFilter =
-                    key === "jobRole" ? job.title.includes(value) : 
-                    key === "experience" ? job.experience === value :
-                    false; 
-                }
-                if (!matchesFilter) break; 
-              }
-            }
-            return matchesFilter;
-          })
-          .map((job) => (
-            <JobCard key={job.id} job={job} />
-          ))}
+  .filter((job) => {
+    let matchesFilter = true;
+    for (const [key, value] of Object.entries(filter)) {
+      if (value) {
+        if (key === "jobType" || key === "location") {
+          matchesFilter =
+            value === job[key] ||
+            (key === "jobType" && value === "Part Time" && !job.isFulltime);
+        } else {
+          matchesFilter =
+            key === "jobRole"
+              ? job.title.includes(value)
+              : key === "experience"
+              ? job.experience === value
+              : false;
+        }
+        if (!matchesFilter) break;
+      }
+    }
+    return matchesFilter;
+  })
+  .map((job) => (
+    <JobCard key={job.id} job={job} jobId={job.id} />
+  ))}
         {currentUser && currentUser.role === 'admin' && <JobForm />}
  
       </div>

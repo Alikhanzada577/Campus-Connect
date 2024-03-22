@@ -3,7 +3,7 @@ import JobCardModal from "./JobCardModal";
 import "./../job.css";
 import dayjs from "dayjs";
 
-const JobCard = ({ job }) => {
+const JobCard = ({ job, jobId }) => {
   const { title, tags, isFulltime, isInOffice, experience, company } = job;
   const [showModal, setShowModal] = useState(false);
 
@@ -33,6 +33,7 @@ const JobCard = ({ job }) => {
             <JobCardModal
               title={title}
               company={company}
+              jobId={jobId} 
               closeModal={closeModal}
             />
           )}
