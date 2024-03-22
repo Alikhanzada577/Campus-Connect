@@ -7,7 +7,7 @@ const AnnouncementCard = ({ announcement }) => {
 
     const [showModal, setShowModal] = useState(false);
     const closeModal = () => setShowModal(false);
-  console.log(fileUrl)
+  
     return (
         <div className='AnnouncementCard'>
             <div className='CardMain'>
@@ -31,7 +31,7 @@ const AnnouncementCard = ({ announcement }) => {
                       closeModal={closeModal} />}
                 </div>
             </div>
-        </div>
+        </div> 
     )
 }
 

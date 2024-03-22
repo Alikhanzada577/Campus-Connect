@@ -189,3 +189,24 @@ select{
 }
 
 
+.modal-wrapper{
+    position:fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background-color: rgba(189,189,189,0.9);
+}
+.modal-container{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    max-width: 30rem;
+    padding: 2rem 3rem;
+    border-radius: 0.5rem;
+    top: 25.5%;
+    left: 31.5%;
+    translate: (-50%,-50%);
+    background-color: #28282b;
+    color: white;
+}

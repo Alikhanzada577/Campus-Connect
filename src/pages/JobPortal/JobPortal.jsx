@@ -12,7 +12,7 @@ import { AuthContext } from '../../context/AuthContext';
 const JobPortal = () => {
   const [jobs, setJobs] = useState([]);
   const { currentUser } = useContext(AuthContext);
-  const [filter, setFilter] = useState({}); // Added state for filters
+  const [filter, setFilter] = useState({}); 
 
   useEffect(() => {
     const fetchJobs = async () => {
@@ -29,7 +29,7 @@ const JobPortal = () => {
     fetchJobs();
   }, []);
 
-  const handleClick = () => { // Assuming this is for search button in SearchBar
+  const handleClick = () => { 
     const selectedFilters = {
       jobRole: document.getElementById("jobRoleSelect").value,
       jobType: document.getElementById("jobTypeSelect").value,
@@ -46,21 +46,21 @@ const JobPortal = () => {
       </div>
       <div className='main'>
         <Header />
-        <SearchBar handleClick={handleClick} /> {/* Pass handleClick to SearchBar */}
+        <SearchBar handleClick={handleClick} /> 
         {jobs
           .filter((job) => {
-            let matchesFilter = true; // Assume match initially
+            let matchesFilter = true; 
             for (const [key, value] of Object.entries(filter)) {
-              if (value) { // If a filter is applied
-                if (key === "jobType" || key === "location") { // Handle jobType and location specially
-                  matchesFilter = value === job[key] || (key === "jobType" && value === "Part Time" && !job.isFulltime); // OR logic for job type and location
+              if (value) { 
+                if (key === "jobType" || key === "location") { 
+                  matchesFilter = value === job[key] || (key === "jobType" && value === "Part Time" && !job.isFulltime); 
                 } else {
                   matchesFilter =
-                    key === "jobRole" ? job.title.includes(value) : // Case-specific comparisons for other filters
+                    key === "jobRole" ? job.title.includes(value) : 
                     key === "experience" ? job.experience === value :
-                    false; // Handle unexpected cases
+                    false; 
                 }
-                if (!matchesFilter) break; // Stop early if a filter doesn't match
+                if (!matchesFilter) break; 
               }
             }
             return matchesFilter;

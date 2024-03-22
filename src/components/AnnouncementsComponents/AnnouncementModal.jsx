@@ -16,9 +16,9 @@ const AnnouncementModal=({ closeModal, title, description, imageUrl })=>{
         <div className='image-container'>
             <img src={imageUrl} alt="" />
         </div>
-        {/* <button className='modal-btn' onClick={closeModal}>Close</button> */}
-        </div>
         
+        </div>
+         
       </>
     )
   };
