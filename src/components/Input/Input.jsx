@@ -138,6 +138,7 @@ const Input = () => {
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       handleSend();
+      
     }
   };
 
@@ -172,7 +173,7 @@ const Input = () => {
         <label htmlFor="image">
           <ImageIcon />
         </label>
-        <button onClick={handleSend}>Send</button>
+        <button disabled={text.length < 1}  onClick={handleSend}>Send</button>
       </div>
     </div>
   );
