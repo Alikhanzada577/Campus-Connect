@@ -12,7 +12,7 @@ const CommunityInput = ({ roomId }) => {
     const [text, setText] = useState('');
     const [imageFile, setImageFile] = useState(null);
     const [file, setFile] = useState(null);
-
+    let profileImage=currentUser.photoURL;
     const handleImageChange = (event) => {
         setImageFile(event.target.files[0]);
     };
@@ -55,6 +55,7 @@ const CommunityInput = ({ roomId }) => {
                 displayName: currentUser.displayName,
                 text: text.trim(),
                 timestamp: serverTimestamp(),
+                profilePhoto:profileImage,
                 imageURL: imageDownloadURL,
                 fileURL: fileDownloadURL,
             });

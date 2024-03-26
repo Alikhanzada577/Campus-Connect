@@ -1,7 +1,7 @@
 import React from 'react';
 
 const CommunityMessage = ({ message, isOwnMessage }) => {
-  const { displayName, text, imageURL, fileURL } = message;
+  const { displayName, text, imageURL, fileURL,profilePhoto } = message;
 
   const renderMessageContent = () => {
     let content = null;
@@ -20,7 +20,7 @@ const CommunityMessage = ({ message, isOwnMessage }) => {
           <a href={fileURL} target="_blank" rel="noopener noreferrer">
             Download File
           </a>
-        </div>
+        </div> 
       );
     }
 
@@ -30,7 +30,7 @@ const CommunityMessage = ({ message, isOwnMessage }) => {
   return (
     <div className={`message ${isOwnMessage ? 'owner' : ''}`}>
       <div className='messageInfo'>
-        <img src="" alt=''/>
+        <img src={profilePhoto} alt=''/>
         <span>{displayName}</span>
       </div> 
       <div className='messageContent'>

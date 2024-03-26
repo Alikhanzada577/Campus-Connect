@@ -8,7 +8,7 @@ const Communities = () => {
   const [selectedChatRoom, setSelectedChatRoom] = useState(null);
 
   const handleChatRoomClick = (roomTitle) => {
-    setSelectedChatRoom(roomTitle);
+    setSelectedChatRoom(roomTitle); 
   };
 
   return (

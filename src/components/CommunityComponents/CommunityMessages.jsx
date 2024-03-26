@@ -7,7 +7,7 @@ const CommunityMessages = ({roomId, selectedChatRoom}) => {
   const containerRef=useRef(null);
   const {currentUser}=useContext(AuthContext);
   const messages = useMessages(roomId)
-
+ 
   useLayoutEffect(() => {
     if (containerRef.current) {
         containerRef.current.scrollTop = containerRef.current.scrollHeight;
