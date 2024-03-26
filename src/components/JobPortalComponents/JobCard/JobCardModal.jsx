@@ -1,12 +1,12 @@
 import Button from "@mui/material/Button";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { db, storage } from "../../../firebase/firebase-auth";
 import { addDoc, collection, doc } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import "./../job.css";
 
-const JobCardModal = ({ closeModal, title, company, jobId }) => {
-  // Pass jobId as prop
+const JobCardModal = ({ closeModal, title, company, jobId,applicant}) => {
+ 
   const [file, setFile] = useState(null);
 
   const handleFileChange = (event) => {
@@ -17,7 +17,7 @@ const JobCardModal = ({ closeModal, title, company, jobId }) => {
   const handleUpload = async () => {
     try {
       if (file) {
-        const storageRef = ref(storage, `resumes/${jobId}_${file.name}`); // Use jobId in file name
+        const storageRef = ref(storage, `resumes/${jobId}_${file.name}`);
         const uploadTask = uploadBytesResumable(storageRef, file);
         await uploadTask;
         const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
@@ -28,6 +28,7 @@ const JobCardModal = ({ closeModal, title, company, jobId }) => {
           title: title,
           company: company,
           resumeUrl: downloadURL,
+          applicant:applicant
         });
 
         setFile(null);

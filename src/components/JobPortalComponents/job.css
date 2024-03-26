@@ -209,4 +209,8 @@ select{
     translate: (-50%,-50%);
     background-color: #28282b;
     color: white;
+    .applicant{
+        display: flex;
+        flex-direction: row;
+    }
 }
