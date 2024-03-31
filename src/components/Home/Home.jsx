@@ -8,9 +8,13 @@ const Home = () => {
   return (
     <div className='home'>
       <div className="containerr">
+        <div className='mainNavigation'>
       <LeftNav/>
+      </div>
+      <div className='otherContainer'>
       <Sidebar/>
       <Chat/>
+      </div>
      </div>
     </div>
   )

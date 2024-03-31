@@ -40,7 +40,7 @@ const JobCardModal = ({ closeModal, title, company, jobId,applicant}) => {
 
   return (
     <>
-      <div className="modal-wrapper" onClick={closeModal}></div>
+      <div className="modal-wrapperr" onClick={closeModal}></div>
       <div className="modal-container">
         <h2>{title}</h2>
         <span>{company}</span>

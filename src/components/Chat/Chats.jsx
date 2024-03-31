@@ -25,7 +25,7 @@ const Chats = () => {
     dispatch({ type: "CHANGE_USER", payLoad: u });
   };
   return (
-    <div className="chats">
+    <div className="chats" id="dNone">
       {Object.entries(chats)
         ?.sort((a, b) => b[1].date - a[1].date)
         .map((chat) => (

@@ -14,13 +14,17 @@ const Communities = () => {
   return (
     <div className='home'>
       <div className="containerr">
+        <div  className='mainNavigation'>
         <LeftNav />
+        </div>
+        <div className='otherContainer'>
         <CommunitySidebar onChatRoomClick={handleChatRoomClick} />
         {selectedChatRoom ? (
           <CommunityChat selectedChatRoom={selectedChatRoom} chatRooms={chatRooms} />
         ) : (<div className='chat'>
             
         </div>)}
+      </div>
       </div>
     </div>
   );
