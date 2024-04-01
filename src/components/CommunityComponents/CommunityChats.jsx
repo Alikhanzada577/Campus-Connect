@@ -5,13 +5,13 @@ import { useLastMessage } from './useLastMessage';
 
 const CommunityChats = ({ onChatRoomClick }) => {
   return (
-    <div className='chats'>
+    <div className='communityChats'>
       {chatRooms.map((room) => (
         <UserChat key={room.id} room={room} onChatRoomClick={onChatRoomClick} />
       ))}
     </div>
   );
-};
+}; 
 
 const UserChat = ({ room, onChatRoomClick }) => {
   const lastMessage = useLastMessage(room.id);

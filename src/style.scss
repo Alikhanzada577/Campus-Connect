@@ -170,6 +170,18 @@
              }
         }
     }
+    .communityChats{
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+       
+        @include mobile{
+            display: flex;
+            flex-direction: row;
+            overflow-x: auto;
+            height: fit-content;
+        }
+    }
     .userChat{
         img{
             width: 50px;
@@ -244,7 +256,7 @@
         background-color: #C4C4C4;
         padding: 10px;
         height:calc(100% - 99px) ;
-        overflow: scroll;
+        overflow: auto;
          overflow-x: hidden;
         width: auto;
         .message{
