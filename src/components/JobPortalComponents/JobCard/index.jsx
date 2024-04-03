@@ -6,7 +6,7 @@ import dayjs from "dayjs";
 import AppliedJobs from "./AppliedJobs";
 import { collection, doc, deleteDoc } from 'firebase/firestore';
 import { db } from '../../../firebase/firebase-auth';
-
+ 
 const JobCard = ({ job, jobId }) => {
   const { currentUser } = useContext(AuthContext);
   const { title, tags, isFulltime, isInOffice, experience, company } = job;

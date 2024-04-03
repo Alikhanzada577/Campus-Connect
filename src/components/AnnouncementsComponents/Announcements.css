@@ -1,8 +1,11 @@
+
+
+    
 .AnnouncementCard{
     margin: 1rem 8rem 1rem 8rem;
   
 }
-.CardMain{
+.AnnouncementCardMain{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -14,8 +17,8 @@
     border: 1px solid black;
     background-color: #D4D4D4;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-
-    .Card-info{
+    
+    .AnnouncementCard-info{
         display: flex;
         flex-direction: column;
         text-align: start;
@@ -37,16 +40,30 @@
                border: 0.5px solid black;
             }
         }
+        /* @include mobile{
+          h1{
+            text-align: center;
+          }
+         
+            p{
+                text-align: center;
+               
+            }
+          
+        } */
     }
-    .CardView{
-        margin: 1.5rem 0rem 1.5rem 1.5rem;
-            
+    .AnnouncementCardView{
+        margin: 0.5rem 0rem 0.5rem 0.5rem;
+            /* @include mobile{
+                margin: 0;
+                
+            } */
         .AnnouncementImage{
             margin-top: 0.5rem;
             margin-right: 0.3rem;
             img{
-            height: 6rem;
-            width: 6rem;
+            height: 5rem;
+            width: 5rem;
             border: 2px solid black ;
             
         }
@@ -101,9 +118,11 @@
     }
 
 }
-.modal-btn{
+.Amodal-btn{
     /* padding: 0.4rem 1rem; */
-    font-size: 1.4rem;
+    font-size: 1rem;
+    height: 2rem;
+    width: 5rem;
     border: none;
     border-radius: 0.3rem;
     background-color: #0F82FF;
@@ -112,6 +131,10 @@
     margin-top: 0.1rem;
     margin-right: 0.3rem;
     margin-bottom: 0.3rem;
+    /* @include mobile{
+        height:fit-content;
+        padding: 0 1rem;
+    } */
 }
 .modal-btn:hover{
     background-color: #fff;
@@ -127,44 +150,29 @@
     align-items: center;
 }
 
-@media screen and (min-width: 480px) {
-    .CardMain{
+@media only screen and (max-width:480px){
+    .AnnouncementCardMain{
         display: flex;
-        flex-direction:column-reverse;
+        flex-direction: column-reverse;
         height: fit-content;
-        margin: auto;
-        .CardView{
-            justify-content: flex-start;
-            margin: auto;
-        }
-        .Card-info{
-            margin: auto;
-            h1{
-            text-align: start;
-            }
-        }
-    }
-  }
-@media screen and (min-width: 768px) {
-    .CardMain{
-        display: flex;
-        flex-direction:row;
-        height: fit-content;
+        align-items: center;
         padding: 0;
-
-        .CardView{
+        .AnnouncementCardMain{
             display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            margin: 0;
-            .modal-btn{
-                height: 200%;
+            flex-direction: column-reverse;
+            height: fit-content;
+            align-items: center;
+            padding: 0;
+            
+         }
+         .AnnouncementCard-info{
+            h1{
+                text-align: center;
             }
+            text-align: center;
+        }
+        
+     }
+     
+}
 
-        }
-        .Card-info{
-            margin: 5px;
-           
-        }
-    }
-  }

@@ -36,7 +36,7 @@ const Announcements = () => {
       <div className='main'>
         <AnnouncementHeader />
         {announcements.map(announcement => (
-          <AnnouncementCard key={announcement.id} announcement={announcement} />
+          <AnnouncementCard key={announcement.id} announcementId={announcement.id} announcement={announcement} />
         ))}
          {currentUser && currentUser.role === 'admin' && (
           <AnnouncementForm />

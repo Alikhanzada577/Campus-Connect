@@ -37,13 +37,16 @@ const ApplicationForm = () => {
       </div>
       <div className="form">
         <Header />
-      {currentUser && currentUser.role != 'admin' && <FormSubmission />}
+      {currentUser && currentUser.role !== 'admin' && <FormSubmission />}
       
        
         {currentUser &&
           currentUser.role === "admin" &&
           applications.map((application) => (
-            <ApplicationCard key={application.id} application={application} />
+            <ApplicationCard
+             key={application.id}
+             application={application} 
+             applicationId={application.id} />
           ))}
       </div>
     </div>
