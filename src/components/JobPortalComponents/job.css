@@ -100,8 +100,9 @@ select{
     transform: scale(1.03);
 
   }
+ 
 
-@media (max-width:767px) {
+@media(max-width:767px) {
     h1 {
         font-size: 2rem; 
         font-weight: bold;
@@ -213,4 +214,15 @@ select{
         display: flex;
         flex-direction: row;
     }
+}
+@media (max-width: 480px) {
+    .Card{
+        text-align: center;
+        .Card-left{
+            text-align: center;
+            align-items: center;
+           
+        }
+    }
+    
 }

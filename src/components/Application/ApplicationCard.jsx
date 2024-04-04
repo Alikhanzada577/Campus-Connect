@@ -35,8 +35,10 @@ const ApplicationCard = ({ application,applicationId }) => {
                         
                         {fileUrl && <img src={fileUrl} alt='Application' />}
                     </div>
+                    <div className='btn-control'>
                     <button className='modal-btn' onClick={handleDelete}>Delete</button>
                     <button className="modal-btn" onClick={() => setShowModal(true)}>View</button>
+                    </div>
                     {showModal && <ApplicationModal
                         applicationPurpose={applicationPurpose}
                         enrollment={enrollment}

@@ -11,7 +11,7 @@ import { AuthContext } from "../../context/AuthContext";
 const ApplicationForm = () => {
   const { currentUser } = useContext(AuthContext);
   const [applications, setApplications] = useState([]);
-
+  
   useEffect(() => {
     const fetchApplications = async () => {
       try {
@@ -22,6 +22,7 @@ const ApplicationForm = () => {
           id: doc.id,
         }));
         setApplications(applicationsData);
+        
       } catch (error) {
         console.log(error.message);
       }

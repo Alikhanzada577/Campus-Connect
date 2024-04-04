@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 import { db, storage } from './../../firebase/firebase-auth';
 import { addDoc, collection, updateDoc } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
-
+ 
 const FormSubmission = () => {
     const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
@@ -17,7 +17,7 @@ const FormSubmission = () => {
     const [applicationFor, setApplicationFor] = useState('');
     const [file, setFile] = useState(null);
     const [isInputLabelShrunk, setIsInputLabelShrunk] = useState(false);
-
+    const[submitButtonDisabled,setSubmitButtonDisabled]=useState(false);
     const handleApplicationForChange = (event) => {
         setApplicationFor(event.target.value);
         setIsInputLabelShrunk(true);
@@ -44,6 +44,8 @@ const FormSubmission = () => {
                     fileUrl: downloadURL,
                 });
             }
+            
+        setSubmitButtonDisabled(true);
         } catch (error) {
             console.error('Error creating application:', error);
         }
@@ -111,6 +113,7 @@ const FormSubmission = () => {
                 variant='contained'
                 style={{ width: 300, margin: 15 }}
                 onClick={handleSubmit}
+                disabled={submitButtonDisabled}
             >
                 Submit Application
             </Button>
