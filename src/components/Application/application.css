@@ -81,19 +81,22 @@
     top: 0;
     background-color: rgba(189,189,189,0.9);
 }
-.modal-container{
+.modalApplication-container{
     position: fixed;
     display: flex;
     flex-direction: row;
-    max-width: 30rem;
+    max-width: fit-content;
     padding: 2rem 3rem;
     border-radius: 0.5rem;
+    text-align: start;
     top: 25.5%;
-    left: 31.5%;
+    left: 25.5%;
     translate: (-50%,-50%);
-    background-color: #28282b;
+    background-color: white;
+    color: black;
     .data-container{
-        
+        background-color: white;
+        color: black;
         flex: 1;
     h2{
         font-size: 2.4rem;
@@ -105,11 +108,11 @@
 
     }
 }
-    .image-container{
+    .applicationImage-container{
         flex: 0.5;
         
         img{
-        margin: 5rem 1rem 0 1rem;
+        margin: 0rem 1rem 0 1rem;
         height: 14rem;
         width: 10rem;
         border: 1px solid black ;
@@ -183,6 +186,34 @@
                 }
             }
         
+        }
+    }
+    .modalApplication-container{
+        display: flex;
+        flex-direction: column-reverse;
+        top: 25.0%;
+        left: 20.0%;
+        translate: (-50%,-50%);
+        .data-container{
+            text-align: center;
+            h3{
+                font-size: 0.7rem;
+            }
+            p{
+                font-size: 1.4rem;
+                margin: 1rem 0 2.4rem 0;
+                line-height: 1.8rem;
+        
+            }
+        }
+        .applicationImage-container{
+            margin: auto;
+            img{
+                margin: 0rem 1.0rem 0 1.0rem;
+                height: 8rem;
+                width: 6rem;
+                border: 1px solid black ;
+            }
         }
     }
   }

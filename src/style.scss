@@ -178,7 +178,7 @@
         @include mobile{
             display: flex;
             flex-direction: row;
-            overflow-x: auto;
+            overflow-y: auto;
             height: fit-content;
         }
     }
@@ -218,15 +218,20 @@
             }
         }
        }
+       @include mobile{
+        border: 1px solid;
+        width: 5rem;
+       }
     }
     @include mobile{
         flex-direction: row;
         height: 10px;
+        overflow-y: auto;
+        
     }
-    // @include mobile{
-    //     height: 10px;
-    //     flex: 1;
-    // }
+    @include mobile{
+       overflow-x:auto;
+    }
  }
 
 
@@ -374,6 +379,7 @@
         height:calc(100% - 79px) ;
     }
 }
+
 
 //Zoom
 .zoom{
