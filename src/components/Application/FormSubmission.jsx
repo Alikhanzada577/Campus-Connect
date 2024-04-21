@@ -106,7 +106,7 @@ const FormSubmission = () => {
                 onClick={() => document.querySelector('input[type="file"]').click()}
                 style={{ width: 300, margin: 15 }}
             >
-                Choose File
+                Upload Pdf
             </Button>
 
             <Button

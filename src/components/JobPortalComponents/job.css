@@ -96,9 +96,7 @@ select{
 }
 .Card:hover {
     border-color: #177df2; /* The specific shade of blue */
-    transform: translateY(0.25rem);
-    transform: scale(1.03);
-
+    
   }
  
 
@@ -179,8 +177,8 @@ select{
     
     .Card:hover {
         border-color: #177df2;
-        transform: translateY(0.25rem);
-        transform: scale(1.03);
+        /* transform: translateY(0.25rem);
+        transform: scale(1.03); */
     }
 }
 
@@ -206,7 +204,7 @@ select{
     padding: 2rem 3rem;
     border-radius: 0.5rem;
     top: 25.5%;
-    left: 31.5%;
+    left: 41.5%;
     translate: (-50%,-50%);
     background-color: #28282b;
     color: white;
