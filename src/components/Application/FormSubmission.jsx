@@ -1,4 +1,3 @@
-// FormSubmission.js
 import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
@@ -9,7 +8,7 @@ import Button from '@mui/material/Button';
 import { db, storage } from './../../firebase/firebase-auth';
 import { addDoc, collection, updateDoc } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
- 
+
 const FormSubmission = () => {
     const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
@@ -17,7 +16,8 @@ const FormSubmission = () => {
     const [applicationFor, setApplicationFor] = useState('');
     const [file, setFile] = useState(null);
     const [isInputLabelShrunk, setIsInputLabelShrunk] = useState(false);
-    const[submitButtonDisabled,setSubmitButtonDisabled]=useState(false);
+    const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false);
+
     const handleApplicationForChange = (event) => {
         setApplicationFor(event.target.value);
         setIsInputLabelShrunk(true);
@@ -44,8 +44,15 @@ const FormSubmission = () => {
                     fileUrl: downloadURL,
                 });
             }
-            
-        setSubmitButtonDisabled(true);
+
+            setFullName('');
+            setEmail('');
+            setEnrollment('');
+            setApplicationFor('');
+            setFile(null);
+            setIsInputLabelShrunk(false);
+            setSubmitButtonDisabled(true);
+            alert('submission recorded');
         } catch (error) {
             console.error('Error creating application:', error);
         }
@@ -53,7 +60,12 @@ const FormSubmission = () => {
 
     const handleFileChange = (event) => {
         const selectedFile = event.target.files[0];
-        setFile(selectedFile);
+        // Check if the selected file is a PDF
+        if (selectedFile && selectedFile.type === 'application/pdf') {
+            setFile(selectedFile);
+        } else {
+            alert('Please select a PDF file.');
+        }
     };
 
     return (
@@ -97,7 +109,7 @@ const FormSubmission = () => {
 
             <input
                 type="file"
-                accept="image/*"
+                accept="application/pdf" 
                 style={{ display: 'none' }}
                 onChange={handleFileChange}
             />
