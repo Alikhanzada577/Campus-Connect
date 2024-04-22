@@ -50,6 +50,7 @@ const handleSubmission = () => {
     <TextField  onChange={event=>setValues(prev=>({...prev,pass:event.target.value}))}
         sx={{width: 400,marginBottom:1,}}
       label="Password"
+      type="password"
        />
        <Button variant="contained" onClick={handleSubmission} disabled={submitButtonDisabled}
        sx={{width: 400, marginTop:2,}} style={{backgroundColor:"#4A154B"}}>
