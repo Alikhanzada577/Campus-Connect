@@ -1,44 +1,55 @@
 import React, { useContext, useState } from 'react';
-import{doc,getDoc,setDoc,getDocs} from "firebase/firestore";
-import {db} from "../../firebase/firebase-auth";
-import { collection,query,where,updateDoc, serverTimestamp } from 'firebase/firestore';
+import { doc, getDoc, setDoc, getDocs } from "firebase/firestore";
+import { db } from "../../firebase/firebase-auth";
+import { collection, query, where, updateDoc, serverTimestamp } from 'firebase/firestore';
 import { AuthContext } from '../../context/AuthContext';
 import { ChatContext } from '../../context/ChatContext';
 
 const Search = () => {
   const [username, setUsername] = useState("");
-  const [user, setUser] = useState(null);
+  const [users, setUsers] = useState([]);
   const [err, setErr] = useState(false);
-  const {currentUser}=useContext(AuthContext);
-  const {dispatch}=useContext(ChatContext);
+  const { currentUser } = useContext(AuthContext);
+  const { dispatch } = useContext(ChatContext);
 
   const handleSearch = async () => {
+    if (username.trim() === "") {
+      setUsers([]);
+      return;
+    }
+
     const q = query(
-      collection(db,"users"),
-      where("displayName","==",username)
+      collection(db, "users"),
+      where("displayName", ">=", username.trim()),
+      where("displayName", "<=", username.trim() + "\uf8ff")
     );
+
     try {
       const querySnapshot = await getDocs(q);
+      const matchedUsers = [];
       querySnapshot.forEach((doc) => {
-        setUser(doc.data());
+        matchedUsers.push(doc.data());
       });
+      setUsers(matchedUsers);
     } catch (err) {
       setErr(true);
     }
   };
 
-  const handleKey =(e)=>{
-    e.code === "Enter" && handleSearch();
+  const handleInputChange = (e) => {
+    setUsername(e.target.value);
+    // Trigger search when input changes
+    handleSearch();
   };
 
-  const handleSelect = async () => {
+  const handleSelect = async (selectedUser) => {
     // Add the selected user's chat to ChatContext
-    dispatch({ type: "CHANGE_USER", payLoad: user });
+    dispatch({ type: "CHANGE_USER", payLoad: selectedUser });
 
     // Add the selected user's chat to chats list
-    const combinedId = user.uid > currentUser.uid
-      ? user.uid + currentUser.uid
-      : currentUser.uid + user.uid;
+    const combinedId = selectedUser.uid > currentUser.uid
+      ? selectedUser.uid + currentUser.uid
+      : currentUser.uid + selectedUser.uid;
 
     try {
       const res = await getDoc(doc(db, "chats", combinedId));
@@ -47,13 +58,13 @@ const Search = () => {
 
         await updateDoc(doc(db, "userChats", currentUser.uid), {
           [combinedId + ".userInfo"]: {
-            uid: user.uid,
-            displayName: user.displayName,
-            photoURL: user.photoURL
+            uid: selectedUser.uid,
+            displayName: selectedUser.displayName,
+            photoURL: selectedUser.photoURL
           },
           [combinedId + ".date"]: serverTimestamp()
         });
-        await updateDoc(doc(db, "userChats", user.uid), {
+        await updateDoc(doc(db, "userChats", selectedUser.uid), {
           [combinedId + ".userInfo"]: {
             uid: currentUser.uid,
             displayName: currentUser.displayName,
@@ -66,29 +77,29 @@ const Search = () => {
       console.error("Error adding chat:", err);
     }
 
-    setUser(null);
+    setUsers([]);
     setUsername("");
   };
 
   return (
     <div className='search'>
-      <div className="searchForm" >
+      <div className="searchForm">
         <input
           type="text"
           placeholder='Find a User'
-          onKeyDown={handleKey}
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={handleInputChange}
+          value={username}
         />
       </div>
       {err && <span>User not Found</span>}
-      {user && (
-        <div className="userChat" onClick={handleSelect}>
-          <img src={user.photoURL} alt='profile'/>
+      {users.map((user) => (
+        <div key={user.uid} className="userChat" onClick={() => handleSelect(user)}>
+          <img src={user.photoURL} alt='profile' />
           <div className="userChatInfo">
             <span>{user.displayName}</span>
           </div>
         </div>
-      )}
+      ))}
     </div>
   );
 }
