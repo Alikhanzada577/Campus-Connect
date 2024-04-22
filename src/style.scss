@@ -385,10 +385,15 @@
 .zoom{
     height:calc(100%);
     display: flex;
+    justify-content: center;
     flex-direction: column;
     margin: auto;
      width: 50%;
     padding: 10px;
+    p{
+        margin-top:2rem;
+        width: 400px;
+    }
 }
 //AnnouncementSection
 .AnnouncementSection{

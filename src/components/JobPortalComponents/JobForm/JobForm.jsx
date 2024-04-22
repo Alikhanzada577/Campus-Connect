@@ -1,6 +1,6 @@
-import React, {useState } from 'react';
+import React, { useState } from 'react';
 import { db } from '../../../firebase/firebase-auth';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore'; // Import serverTimestamp
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { FormControlLabel, Checkbox, FormGroup } from '@mui/material';
@@ -28,9 +28,9 @@ const JobForm = () => {
   
 
     const handleSubmit = async () => {
-        // Only allow submission if one option is selected from each group
+        
         if ((isFullTime || !isFullTime) && (isInOffice || !isInOffice)) {
-            // Prepare data to be stored
+          
             const jobData = {
                 title: title,
                 company: company,
@@ -38,6 +38,7 @@ const JobForm = () => {
                 tags: tags,
                 isFullTime: isFullTime,
                 isInOffice: isInOffice,
+                createdAt: serverTimestamp(), // Use serverTimestamp instead of new Date()
             };
 
             try {

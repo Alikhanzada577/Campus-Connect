@@ -13,7 +13,7 @@ const JobPortal = () => {
   const [jobs, setJobs] = useState([]);
   const { currentUser } = useContext(AuthContext);
   const [filter, setFilter] = useState({}); 
-
+ 
   useEffect(() => {
     const fetchJobs = async () => {
       try {

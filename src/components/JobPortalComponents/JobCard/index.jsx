@@ -6,15 +6,17 @@ import dayjs from "dayjs";
 import AppliedJobs from "./AppliedJobs";
 import { collection, doc, deleteDoc } from 'firebase/firestore';
 import { db } from '../../../firebase/firebase-auth';
- 
+
 const JobCard = ({ job, jobId }) => {
   const { currentUser } = useContext(AuthContext);
-  const { title, tags, isFulltime, isInOffice, experience, company } = job;
+  const { title, tags, isFulltime, isInOffice, experience, company, createdAt } = job;
   const [showModal, setShowModal] = useState(false);
   const [showAppliedModal, setShowAppliedModal] = useState(false);
-  const [isDeleted, setIsDeleted] = useState(false); 
-  const date1 = dayjs(Date.now());
-  const diffInDays = date1.diff("2023-10-9", "day");
+  const [isDeleted, setIsDeleted] = useState(false);
+
+  // Convert Firestore Timestamp to Date object
+  const createdAtDate = createdAt && createdAt.toDate();
+  const diffInDays = createdAtDate && dayjs().diff(dayjs(createdAtDate), 'day');
 
   const closeModal = () => setShowModal(false);
   const closeAppliedModal = () => setShowAppliedModal(false);
@@ -23,7 +25,7 @@ const JobCard = ({ job, jobId }) => {
     try {
       await deleteDoc(doc(db, 'jobs', jobId));
       setIsDeleted(true); 
-      console.log("Job card deleted successfully");
+      alert("Job deleted successfully");
     } catch (error) {
       console.error("Error deleting job card:", error);
     }
@@ -47,7 +49,7 @@ const JobCard = ({ job, jobId }) => {
               </div>
             </div>
             <div className="Card-right">
-              <p>Posted {diffInDays} days ago</p>
+              <p>Posted {diffInDays} day ago</p>
 
               {currentUser && currentUser.role !== 'admin' && 
               <button onClick={() => setShowModal(true)}>Apply</button>}

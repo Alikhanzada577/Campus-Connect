@@ -93,13 +93,7 @@ const Zoom = () => {
   return (
     
     <div className='zoom'>
-     <Link to='https://zoom.us/meeting/schedule' target="_blank" rel="noopener noreferrer">
-      <Button variant="contained" 
-       sx={{width: 400, marginTop:2,}}>
-      Create Meeting 
-       </Button>
-       </Link>
-      <p>OR</p>
+     
       
       <TextField sx={{width: 400,marginBottom:1,}}
       label="Meeting Code"
@@ -113,6 +107,14 @@ const Zoom = () => {
        sx={{width: 400, marginTop:2,}} onClick={getSignature}>
       Join Meeting 
        </Button>
+       <p>OR</p>
+       <Link to='https://zoom.us/meeting/schedule' target="_blank" rel="noopener noreferrer">
+      <Button variant="contained" 
+       sx={{width: 400, marginTop:2,}}>
+      Create Meeting 
+       </Button>
+       </Link>
+      
     </div>
   )
 }

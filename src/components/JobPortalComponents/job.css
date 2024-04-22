@@ -222,5 +222,23 @@ select{
            
         }
     }
-    
+    .modal-container{
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+        width: 25rem;
+        padding: 2rem 3rem;
+        border-radius: 0.5rem;
+        top: 25.5%;
+        left: 10%;
+        translate: (-50%,-50%);
+        background-color: #28282b;
+        color: white;
+        justify-content: center;
+        text-align: center;
+        .applicant{
+            display: flex;
+            flex-direction: row;
+        }
+    }
 }
