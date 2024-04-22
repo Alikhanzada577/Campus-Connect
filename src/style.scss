@@ -449,8 +449,12 @@
         flex:3;
         overflow:scroll;
         overflow-x: hidden;
-        
-    }
+        @include mobile{
+            margin-left: auto ;
+            
+           }
+    } 
+
 }
 .applicationForm{
     display: flex;

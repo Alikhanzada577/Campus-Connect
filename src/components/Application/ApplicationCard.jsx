@@ -33,7 +33,7 @@ const ApplicationCard = ({ application,applicationId }) => {
                 <div className='CardView'>
                     <div className='applicationImage'>
                         
-                        {fileUrl && <img src={fileUrl} alt='Application' />}
+                        {fileUrl && <iframe src={fileUrl}></iframe>}
                     </div>
                     <div className='btn-control'>
                     <button className='modal-btn' onClick={handleDelete}>Delete</button>
@@ -44,6 +44,7 @@ const ApplicationCard = ({ application,applicationId }) => {
                         enrollment={enrollment}
                         email={email}
                         name={name}
+                        fileUrl={fileUrl}
                         closeModal={closeModal} />}
                 </div>
             </div>

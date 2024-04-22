@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import "./application.css";
-const AnnouncementModal = ({
+import Button from '@mui/material/Button';
+
+const ApplicationModal = ({
   closeModal,
   applicationPurpose,
   email,
@@ -14,6 +16,17 @@ const AnnouncementModal = ({
       document.body.style.overflowY = "scroll";
     };
   }, []);
+
+  const handleDownload = () => {
+    // Create a temporary anchor element
+    const link = document.createElement("a");
+    link.href = fileUrl;
+    link.download = "application.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <>
       <div className="modal-wrapper" onClick={closeModal}></div>
@@ -37,10 +50,13 @@ const AnnouncementModal = ({
           </h3>
         </div>
         <div className="applicationImage-container">
-          <img src={fileUrl} alt="" />
+          <iframe src={fileUrl}/>
+          <Button variant="contained" onClick={handleDownload}>Download</Button>
+         
         </div>
       </div>
     </>
   );
 };
-export default AnnouncementModal;
+
+export default ApplicationModal;
