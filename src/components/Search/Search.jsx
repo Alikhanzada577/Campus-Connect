@@ -17,18 +17,22 @@ const Search = () => {
       setUsers([]);
       return;
     }
-
+  
     const q = query(
       collection(db, "users"),
       where("displayName", ">=", username.trim()),
       where("displayName", "<=", username.trim() + "\uf8ff")
     );
-
+  
     try {
       const querySnapshot = await getDocs(q);
       const matchedUsers = [];
       querySnapshot.forEach((doc) => {
-        matchedUsers.push(doc.data());
+        const user = doc.data();
+        // Filter out the current user
+        if (user.uid !== currentUser.uid) {
+          matchedUsers.push(user);
+        }
       });
       setUsers(matchedUsers);
     } catch (err) {
