@@ -1,40 +1,59 @@
-import React ,{useState} from 'react';
+import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { Link , useNavigate} from 'react-router-dom';
-import {createUserWithEmailAndPassword,updateProfile} from 'firebase/auth';
-import { auth,storage,db } from './../../firebase/firebase-auth';
+import { Link, useNavigate } from 'react-router-dom';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { auth, storage, db } from './../../firebase/firebase-auth';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
-import {ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { doc, setDoc } from "firebase/firestore"; 
-
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { doc, setDoc } from "firebase/firestore";
 
 const Signup = () => {
-  const navigate=useNavigate();
-  const [values,setValues]=useState({
+  const navigate = useNavigate();
+  const [values, setValues] = useState({
     name: "",
     email: "",
     pass: "",
-    file:null,
+    file: null,
   });
 
-  const [errorMsg, setErrorMsg] = useState("");
-  const[submitButtonDisabled,setSubmitButtonDisabled]=useState(false);
+  const [fieldErrors, setFieldErrors] = useState({
+    name: '',
+    email: '',
+    pass: '',
+    file: ''
+  });
+
+  const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false);
 
   const handleSubmission = async () => {
     try {
       if (!values.name || !values.email || !values.pass || !values.file) {
-        setErrorMsg('Fill All Fields');
+        setFieldErrors({
+          name: !values.name ? 'Please enter your name' : '',
+          email: !values.email ? 'Please enter your email' : '',
+          pass: !values.pass ? 'Please enter your password' : '',
+          file: !values.file ? 'Please select a profile image' : ''
+        });
         return;
       }
 
-      setErrorMsg('');
+      
+      const allowedDomains = ['@student.bahria.edu.com', '@admin.bahria.edu.com', '@teacher.bahria.edu.com', '@alumni.bahria.edu.com'];
+      const isValidDomain = allowedDomains.some(domain => values.email.endsWith(domain));
+      if (!isValidDomain) {
+        setFieldErrors({
+          ...fieldErrors,
+          email: 'Invalid email domain'
+        });
+        return;
+      }
+
       setSubmitButtonDisabled(true);
 
       const res = await createUserWithEmailAndPassword(auth, values.email, values.pass);
       const user = res.user;
 
-      
       let role = '';
       if (values.email.endsWith('@admin.bahria.edu.com')) {
         role = 'admin';
@@ -56,7 +75,7 @@ const Signup = () => {
         null,
         (error) => {
           setSubmitButtonDisabled(false);
-          setErrorMsg(error.message);
+          console.error(error.message);
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
@@ -71,10 +90,10 @@ const Signup = () => {
               displayName: values.name,
               emailid: values.email,
               photoURL: downloadURL,
-              role: role, 
+              role: role,
             });
 
-            await setDoc(doc(db,"userChats",res.user.uid),{});
+            await setDoc(doc(db, "userChats", res.user.uid), {});
             setSubmitButtonDisabled(false);
             navigate('/');
           });
@@ -82,49 +101,63 @@ const Signup = () => {
       );
     } catch (err) {
       setSubmitButtonDisabled(false);
-      setErrorMsg(err.message);
+      console.error(err.message);
     }
   };
-  
+
   return (
     <div className='container'>
-      
       <h1>Sign Up to Campus Connect</h1>
       <p>We suggest using the email address you use at University</p>
-      <TextField label="Full Name"  sx={{width: 400, marginBottom: 1,}}
-        onChange={(event)=>
-                  setValues((prev)=>({...prev,name: event.target.value}))
-                }
-       />
-       <TextField label="XX-XXXXXX-XXX@student.bahria.edu.pk" sx={{width: 400, marginBottom: 1,}}
-         onChange={(event)=>
-          setValues((prev)=>({...prev,email: event.target.value}))
+      <TextField
+        label="Full Name"
+        sx={{ width: 400, marginBottom: 1 }}
+        onChange={(event) =>
+          setValues((prev) => ({ ...prev, name: event.target.value }))
         }
-       />
-       <TextField label="Password"   sx={{width: 400,marginBottom:1,}}
-          onChange={(event)=>
-            setValues((prev)=>({...prev,pass: event.target.value}))
-          }
-        />
-       <input style={{display:"none"}} type='file'  id="file"
-             onChange={(event)=>
-              setValues((prev)=>({...prev,file: event.target.files[0]}))
-            }
-       />
-       <label htmlFor="file" >
-          <AddPhotoAlternateIcon style={{ fontSize: 30 }}
-          ></AddPhotoAlternateIcon>
-          <span style={{marginBottom:"500px"}}>Add your Profile Image</span>
-       </label>
-       <Button variant="contained"  onClick={handleSubmission} disabled={submitButtonDisabled}
-       sx={{width: 400, marginTop:2,}} style={{backgroundColor:"#4A154B" }} >
-        
-       Sign Up
-       </Button>
-       <b className="error">{errorMsg}</b>
+      />
+      {fieldErrors.name && <span className="error">{fieldErrors.name}</span>}
+      <TextField
+        label="XX-XXXXXX-XXX@student.bahria.edu.pk"
+        sx={{ width: 400, marginBottom: 1 }}
+        onChange={(event) =>
+          setValues((prev) => ({ ...prev, email: event.target.value }))
+        }
+      />
+      {fieldErrors.email && <span className="error">{fieldErrors.email}</span>}
+      <TextField
+        label="Password"
+        sx={{ width: 400, marginBottom: 1 }}
+        onChange={(event) =>
+          setValues((prev) => ({ ...prev, pass: event.target.value }))
+        }
+      />
+      {fieldErrors.pass && <span className="error">{fieldErrors.pass}</span>}
+      <input
+        style={{ display: "none" }}
+        type='file'
+        id="file"
+        onChange={(event) =>
+          setValues((prev) => ({ ...prev, file: event.target.files[0] }))
+        }
+      />
+      <label htmlFor="file" >
+        <AddPhotoAlternateIcon style={{ fontSize: 30 }} />
+        <span style={{ marginBottom: "500px" }}>Add your Profile Image</span>
+      </label>
+      {fieldErrors.file && <span className="error">{fieldErrors.file}</span>}
+      <Button
+        variant="contained"
+        onClick={handleSubmission}
+        disabled={submitButtonDisabled}
+        sx={{ width: 400, marginTop: 2 }}
+        style={{ backgroundColor: "#4A154B" }}
+      >
+        Sign Up
+      </Button>
       <p>Already had an Account? <Link to="/">Sign In</Link></p>
     </div>
-  )
+  );
 }
 
 export default Signup;
