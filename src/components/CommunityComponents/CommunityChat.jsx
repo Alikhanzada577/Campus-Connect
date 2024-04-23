@@ -2,11 +2,11 @@ import React from 'react';
 import CommunityMessages from "./CommunityMessages";
 import CommunityInput from './CommunityInput';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import { useMessages } from './useMessages'; // Import the custom hook
+import { useMessages } from './useMessages'; 
 
 const CommunityChat = ({ selectedChatRoom, chatRooms }) => {
   const room = chatRooms.find(room => room.title === selectedChatRoom);
-  const messages = useMessages(room?.id); // Call useMessages with roomId
+  const messages = useMessages(room?.id); 
 
   return (
     <div className='chat'>
@@ -16,7 +16,7 @@ const CommunityChat = ({ selectedChatRoom, chatRooms }) => {
           <MoreHorizIcon />
         </div>
       </div>
-      {room && <CommunityMessages roomId={room.id} selectedChatRoom={selectedChatRoom}  />} {/* Pass messages data */}
+      {room && <CommunityMessages roomId={room.id} selectedChatRoom={selectedChatRoom}  />} 
       {room && <CommunityInput roomId={room.id} />}
     </div>
   );

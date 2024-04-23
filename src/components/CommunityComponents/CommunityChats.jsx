@@ -1,4 +1,4 @@
-// CommunityChats.js
+
 import React from 'react';
 import { chatRooms } from './ChatRooms';
 import { useLastMessage } from './useLastMessage';

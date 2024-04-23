@@ -1,7 +1,7 @@
 import React from 'react';
 import './../job.css';
 
-const SearchBar = ({ handleClick }) => { // Add handleClick prop
+const SearchBar = ({ handleClick }) => { 
 
   return (
     <div className='searchContainer'>

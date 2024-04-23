@@ -29,7 +29,6 @@ const Search = () => {
       const matchedUsers = [];
       querySnapshot.forEach((doc) => {
         const user = doc.data();
-        // Filter out the current user
         if (user.uid !== currentUser.uid) {
           matchedUsers.push(user);
         }
@@ -42,15 +41,12 @@ const Search = () => {
 
   const handleInputChange = (e) => {
     setUsername(e.target.value);
-    // Trigger search when input changes
     handleSearch();
   };
 
   const handleSelect = async (selectedUser) => {
-    // Add the selected user's chat to ChatContext
     dispatch({ type: "CHANGE_USER", payLoad: selectedUser });
 
-    // Add the selected user's chat to chats list
     const combinedId = selectedUser.uid > currentUser.uid
       ? selectedUser.uid + currentUser.uid
       : currentUser.uid + selectedUser.uid;
