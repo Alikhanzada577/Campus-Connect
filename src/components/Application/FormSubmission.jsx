@@ -95,14 +95,17 @@ const FormSubmission = () => {
                     value={applicationFor}
                     onChange={handleApplicationForChange}
                 >
-                    <MenuItem sx={{ backgroundColor: 'gray' }} value='Transcript'>
+                    <MenuItem sx={{ backgroundColor: 'white' }} value='Transcript'>
                         Transcript
                     </MenuItem>
-                    <MenuItem sx={{ backgroundColor: 'gray' }} value='Degree'>
+                    <MenuItem sx={{ backgroundColor: 'white' }} value='Degree'>
                         Degree
                     </MenuItem>
-                    <MenuItem sx={{ backgroundColor: 'gray' }} value='Course Registration'>
+                    <MenuItem sx={{ backgroundColor: 'white' }} value='Course Registration'>
                         Course Registration
+                    </MenuItem>
+                    <MenuItem sx={{ backgroundColor: 'white' }} value='Job Posting'>
+                        Job Posting
                     </MenuItem>
                 </Select>
             </FormControl>

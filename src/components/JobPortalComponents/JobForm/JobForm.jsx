@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { db } from '../../../firebase/firebase-auth';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore'; // Import serverTimestamp
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore'; 
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { FormControlLabel, Checkbox, FormGroup } from '@mui/material';
@@ -12,6 +12,8 @@ const JobForm = () => {
     const [experience, setExperience] = useState("");
     const [isFullTime, setIsFullTime] = useState(false);
     const [isInOffice, setIsInOffice] = useState(false);
+    const [isUniversityJob, setIsUniversityJob] = useState(true); 
+    const [otherCompanyLink, setOtherCompanyLink] = useState(""); 
 
     const handleTagInput = (event) => {
         const inputTags = event.target.value.split(/[ ,]+/); 
@@ -25,12 +27,14 @@ const JobForm = () => {
     const handleLocationChange = (isInOfficeSelected) => {
         setIsInOffice(isInOfficeSelected);
     };
-  
+
+    
+    const handleUniversityJobChange = (isUniversityJobSelected) => {
+        setIsUniversityJob(isUniversityJobSelected);
+    };
 
     const handleSubmit = async () => {
-        
         if ((isFullTime || !isFullTime) && (isInOffice || !isInOffice)) {
-          
             const jobData = {
                 title: title,
                 company: company,
@@ -38,8 +42,13 @@ const JobForm = () => {
                 tags: tags,
                 isFullTime: isFullTime,
                 isInOffice: isInOffice,
-                createdAt: serverTimestamp(), // Use serverTimestamp instead of new Date()
+                isUniversityJob: isUniversityJob,
+                createdAt: serverTimestamp(), 
             };
+
+            if (!isUniversityJob && otherCompanyLink) {
+                jobData.otherCompanyLink = otherCompanyLink;
+            }
 
             try {
                 const docRef = await addDoc(collection(db, 'jobs'), jobData);
@@ -49,6 +58,8 @@ const JobForm = () => {
                 setTags([]);
                 setIsFullTime(false);
                 setIsInOffice(false);
+                setIsUniversityJob(false);
+                setOtherCompanyLink("");
             } catch (error) {
                 console.error("Error adding job: ", error);
             }
@@ -64,19 +75,19 @@ const JobForm = () => {
               label='Job Title'
               sx={{ width: 400, marginBottom: 1, color: 'black' }}
               onChange={(e) => setTitle(e.target.value)}
-              value={title} // Use title state directly as value
+              value={title} 
           />
           <TextField 
               label='Company Name'
               sx={{ width: 400, marginBottom: 1 }}
               onChange={(e) => setCompany(e.target.value)}
-              value={company} // Use company state directly as value
+              value={company} 
           />
           <TextField 
               label='Experience'
               sx={{ width: 400, marginBottom: 1 }}
               onChange={(e) => setExperience(e.target.value)}
-              value={experience} // Use experience state directly as value
+              value={experience}
           />
           <TextField 
               label='Job Tags'
@@ -111,16 +122,40 @@ const JobForm = () => {
         />
     </div>
 </FormGroup>
-            <Button
-                component='label'
-                variant='contained'
-                style={{ width: 300, margin: 15 }}
-                onClick={handleSubmit}
-            >
-                Create
-            </Button>
-        </div>
-    );
+
+<FormGroup>
+    <h4>Posted By</h4>
+    <div className='check-boxes'>
+        <FormControlLabel
+            control={<Checkbox checked={isUniversityJob} onChange={() => handleUniversityJobChange(true)} />}
+            label="University"
+        />
+        <FormControlLabel
+            control={<Checkbox checked={!isUniversityJob} onChange={() => handleUniversityJobChange(false)} />}
+            label="Other Company"
+        />
+    </div>
+</FormGroup>
+
+{!isUniversityJob && (
+    <TextField 
+        label='Other Company Website Link'
+        sx={{ width: 400, marginBottom: 1 }}
+        onChange={(e) => setOtherCompanyLink(e.target.value)}
+        value={otherCompanyLink} 
+    />
+)}
+
+<Button
+    component='label'
+    variant='contained'
+    style={{ width: 300, margin: 15 }}
+    onClick={handleSubmit}
+>
+    Create
+</Button>
+</div>
+);
 }
 
 export default JobForm;
