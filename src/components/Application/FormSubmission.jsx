@@ -107,6 +107,9 @@ const FormSubmission = () => {
                     <MenuItem sx={{ backgroundColor: 'white' }} value='Job Posting'>
                         Job Posting
                     </MenuItem>
+                    <MenuItem sx={{ backgroundColor: 'white' }} value='Job Posting'>
+                        Announcement Post
+                    </MenuItem>
                 </Select>
             </FormControl>
 

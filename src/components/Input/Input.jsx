@@ -16,24 +16,21 @@ import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 
 const Input = () => {
   const [text, setText] = useState("");
-  const [imageFiles, setImageFiles] = useState([]);
-  const [fileUrls, setFileUrls] = useState([]);
+  const [files, setFiles] = useState([]);
   const { currentUser } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
 
   const handleSend = async () => {
-    const imageUploadPromises = [];
-    const fileUploadPromises = [];
-    const imageDownloadURLs = [];
+    const uploadPromises = [];
     const fileDownloadURLs = [];
 
-    for (const file of imageFiles) {
+    for (const file of files) {
       const storageRef = ref(storage, uuid());
-      const uploadTask = uploadBytesResumable(storageRef, file, {
-        contentType: file.type,
+      const uploadTask = uploadBytesResumable(storageRef, file.rawFile, {
+        contentType: file.rawFile.type,
       });
 
-      const imageUploadPromise = new Promise((resolve, reject) => {
+      const uploadPromise = new Promise((resolve, reject) => {
         uploadTask.on(
           "state_changed",
           null,
@@ -43,7 +40,7 @@ const Input = () => {
           () => {
             getDownloadURL(uploadTask.snapshot.ref)
               .then((downloadURL) => {
-                imageDownloadURLs.push(downloadURL);
+                fileDownloadURLs.push({ url: downloadURL, name: file.name });
                 resolve();
               })
               .catch((error) => {
@@ -53,49 +50,17 @@ const Input = () => {
         );
       });
 
-      imageUploadPromises.push(imageUploadPromise);
-    }
-
-    
-    for (const file of fileUrls) {
-      const storageRef = ref(storage, uuid());
-      const uploadTask = uploadBytesResumable(storageRef, file, {
-        contentType: file.type,
-      });
-
-      const fileUploadPromise = new Promise((resolve, reject) => {
-        uploadTask.on(
-          "state_changed",
-          null,
-          (error) => {
-            reject(error);
-          },
-          () => {
-            getDownloadURL(uploadTask.snapshot.ref)
-              .then((downloadURL) => {
-                fileDownloadURLs.push(downloadURL);
-                resolve();
-              })
-              .catch((error) => {
-                reject(error);
-              });
-          }
-        );
-      });
-
-      fileUploadPromises.push(fileUploadPromise);
+      uploadPromises.push(uploadPromise);
     }
 
     try {
-      await Promise.all(imageUploadPromises);
-      await Promise.all(fileUploadPromises);
+      await Promise.all(uploadPromises);
       await updateDoc(doc(db, "chats", data.chatId), {
         messages: arrayUnion({
           id: uuid(),
           text,
           senderId: currentUser.uid,
           date: Timestamp.now(),
-          img: imageDownloadURLs,
           files: fileDownloadURLs,
         }),
       });
@@ -115,8 +80,7 @@ const Input = () => {
       });
 
       setText("");
-      setImageFiles([]);
-      setFileUrls([]);
+      setFiles([]);
     } catch (error) {
       console.error("Error sending files:", error);
     }
@@ -124,21 +88,16 @@ const Input = () => {
 
   const handleFileInputChange = (e) => {
     const fileList = e.target.files;
-    setFileUrls(fileList);
-  };
-
-  const handleImageInputChange = (e) => {
-    const fileList = e.target.files;
-    const imageFiles = Array.from(fileList).filter((file) =>
-      file.type.startsWith("image/")
-    );
-    setImageFiles(imageFiles);
+    const selectedFiles = Array.from(fileList).map((file) => ({
+      rawFile: file,
+      name: file.name,
+    }));
+    setFiles(selectedFiles);
   };
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       handleSend();
-      
     }
   };
 
@@ -162,18 +121,9 @@ const Input = () => {
         <label htmlFor="file">
           <AttachFileIcon />
         </label>
-        <input
-          type="file"
-          style={{ display: "none" }}
-          id="image"
-          multiple
-          onChange={handleImageInputChange}
-          accept="image/*"
-        />
-        <label htmlFor="image">
-          <ImageIcon />
-        </label>
-        <button disabled={text.length < 1}  onClick={handleSend}>Send</button>
+        <button disabled={text.length < 1} onClick={handleSend}>
+          Send
+        </button>
       </div>
     </div>
   );
