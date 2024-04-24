@@ -30,9 +30,9 @@ const SearchBar = ({ handleClick }) => {
         <option value="Mid Level">Mid Level</option>
         <option value="Senior Level">Senior Level</option>
       </select>
-      <button className='Searchbtn' onClick={handleClick}>Search</button> {/* Call handleClick on button click */}
+      <button className='Searchbtn' onClick={handleClick}>Search</button>
     </div>
   );
-};
+}; 
 
 export default SearchBar;

@@ -49,24 +49,30 @@ const JobPortal = () => {
         <SearchBar handleClick={handleClick} /> 
         {jobs
   .filter((job) => {
+    console.log("Filtering Job:", job.title);
     let matchesFilter = true;
     for (const [key, value] of Object.entries(filter)) {
+      console.log("Filter Key:", key, "Filter Value:", value);
       if (value) {
-        if (key === "jobType" || key === "location") {
-          matchesFilter =
-            value === job[key] ||
-            (key === "jobType" && value === "Part Time" && !job.isFulltime);
-        } else {
-          matchesFilter =
-            key === "jobRole"
-              ? job.title.includes(value)
-              : key === "experience"
-              ? job.experience === value
-              : false;
+        if (key === "jobType") {
+          if (value !== (job.isFulltime ? "Full Time" : "Part Time")) {
+            matchesFilter = false;
+          }
         }
-        if (!matchesFilter) break;
+        if (key === "location") {
+          if (value !== (job.isInOffice ? "In-office" : "Remote")) {
+            matchesFilter = false;
+          }
+        }
+        if (key === "jobRole" && !job.title.includes(value)) {
+          matchesFilter = false;
+        }
+        if (key === "experience" && job.experience !== value) {
+          matchesFilter = false;
+        }
       }
     }
+    console.log("Matches Filter:", matchesFilter);
     return matchesFilter;
   })
   .map((job) => (
