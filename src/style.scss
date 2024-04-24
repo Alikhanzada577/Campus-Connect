@@ -73,6 +73,7 @@
         img{
             background-color: #3e3c62;
             height: 5vh;
+            width: 6vh;
             border-radius: 50%;
             border: 2px solid white;
 
@@ -386,6 +387,7 @@
 
 //Zoom
 .zoom{
+    text-align: center;
     height:calc(100%);
     display: flex;
     justify-content: center;
@@ -394,15 +396,18 @@
      width: 50%;
     padding: 10px;
     p{
-        margin-top:2rem;
         width: 400px;
+    }
+    .z-mtg{
+        width: 100%;
+        padding-right: 5rem;
     }
 }
 //AnnouncementSection
 .AnnouncementSection{
     display: flex;
     flex-direction: row;
-    background: #DDDDDD;
+    background: #ffffff;
     height: 100vh;
     .Navigation{
         width: auto;
@@ -422,7 +427,7 @@
 .jobportal{
     display: flex;
     flex-direction: row;
-    background: #DDDDDD;
+    background: #ffffff;
     height: 100vh;
     
     
@@ -448,7 +453,7 @@
 .application{
     display: flex;
     flex-direction: row;
-    background:  #DDDDDD;
+    background:  #ffffff;
     height: 100vh;
     .Navigation{
         flex:0.12;

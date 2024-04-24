@@ -28,7 +28,7 @@ const Zoom = () => {
   function getSignature(e) {
     e.preventDefault();
 
-    fetch("http://localhost:3000", {
+    fetch("http://localhost:4000", {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': 'http://localhost:3000', 'Access-Control-Allow-Credentials': 'true' },
       body: JSON.stringify({
@@ -93,28 +93,28 @@ const Zoom = () => {
   return (
     
     <div className='zoom'>
-     
       
       <TextField sx={{width: 400,marginBottom:1,}}
       label="Meeting Code"
       value={meetingCode}
-      onChange={(e) => setMeetingCode(e.target.value)}       />
+      onChange={(e) => setMeetingCode(e.target.value)} />
          <TextField sx={{width: 400,marginBottom:1,}}
       label="PassCode"
       value={passCode}
-      onChange={(e) => setPassCode(e.target.value)}       />
+      onChange={(e) => setPassCode(e.target.value)}  />
        <Button variant="contained" 
        sx={{width: 400, marginTop:2,}} onClick={getSignature}>
       Join Meeting 
        </Button>
-       <p>OR</p>
+       <p><b>OR</b></p>
+       <div className='z-mtg'>
        <Link to='https://zoom.us/meeting/schedule' target="_blank" rel="noopener noreferrer">
       <Button variant="contained" 
-       sx={{width: 400, marginTop:2,}}>
+       sx={{width: 400, }}>
       Create Meeting 
        </Button>
        </Link>
-      
+       </div>
     </div>
   )
 }
