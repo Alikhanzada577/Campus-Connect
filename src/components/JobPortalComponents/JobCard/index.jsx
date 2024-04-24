@@ -87,7 +87,7 @@ const JobCard = ({ job, jobId }) => {
                   applicant={currentUser.displayName}
                 />
               )}
-              {currentUser && currentUser.role === "admin" && (
+              {currentUser && currentUser.role === "admin" && isUniversityJob && (
                 <button onClick={() => setShowAppliedModal(true)}>
                   Applicants
                 </button>
