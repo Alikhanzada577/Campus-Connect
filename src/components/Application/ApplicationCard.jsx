@@ -1,6 +1,5 @@
 // ApplicationCard.js
-import React, { useState,useContext } from 'react';
-import { AuthContext } from '../../context/AuthContext';
+import React, { useState} from 'react';
 import { db } from '../../firebase/firebase-auth';
 import { doc, deleteDoc } from 'firebase/firestore';
 import ApplicationModal from "./ApplicationModal";

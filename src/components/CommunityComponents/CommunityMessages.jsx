@@ -26,5 +26,5 @@ const CommunityMessages = ({roomId, selectedChatRoom}) => {
   )
 }
 
-export default CommunityMessages
+export default CommunityMessages;
  

@@ -9,7 +9,7 @@ const Header = () => {
       {currentUser && currentUser.role === 'admin' &&
       <h1>Applications</h1>}
     </div>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
