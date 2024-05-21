@@ -23,51 +23,58 @@ const CommunityInput = ({ roomId }) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
+    
         try {
             let imageDownloadURL = '';
             let fileDownloadURL = '';
-
+    
             if (imageFile) {
                 const imageStorageRef = ref(storage, uuid());
                 const imageUploadTask = uploadBytesResumable(imageStorageRef, imageFile, {
                     contentType: imageFile.type,
                 });
-
-                await imageUploadTask;
-
-                imageDownloadURL = await getDownloadURL(imageUploadTask.snapshot.ref);
+    
+                // Await completion of the upload task
+                const snapshot = await imageUploadTask;
+    
+                // Get download URL after upload completes
+                imageDownloadURL = await getDownloadURL(snapshot.ref);
             }
-
+    
             if (file) {
                 const fileStorageRef = ref(storage, uuid());
                 const fileUploadTask = uploadBytesResumable(fileStorageRef, file, {
                     contentType: file.type,
                 });
-
-                await fileUploadTask;
-
-                fileDownloadURL = await getDownloadURL(fileUploadTask.snapshot.ref);
+    
+                // Await completion of the upload task
+                const snapshot = await fileUploadTask;
+    
+                // Get download URL after upload completes
+                fileDownloadURL = await getDownloadURL(snapshot.ref);
             }
-
+    
+            // Add message to Firestore
             await addDoc(collection(db, 'room', roomId, 'messages'), {
                 uid: currentUser.uid,
                 displayName: currentUser.displayName,
                 text: text.trim(),
                 timestamp: serverTimestamp(),
-                profilePhoto:profileImage,
+                profilePhoto: profileImage,
                 imageURL: imageDownloadURL,
                 fileURL: fileDownloadURL,
             });
-
+    
+            // Clear form state
             setText('');
             setImageFile(null);
             setFile(null);
-            console.log("message Sent")
+            console.log("Message Sent Successfully");
         } catch (error) {
             console.error('Error sending message:', error);
         }
     };
+    
     const handleKeyPress = (e) => {
         if (e.key === "Enter") {
             e.preventDefault();

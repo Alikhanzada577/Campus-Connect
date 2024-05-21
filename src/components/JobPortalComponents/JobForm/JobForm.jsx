@@ -52,6 +52,7 @@ const JobForm = () => {
 
             try {
                 const docRef = await addDoc(collection(db, 'jobs'), jobData);
+                await addDoc(collection(db, 'notifications'), { type: 'job', title: title });
                 setTitle("");
                 setCompany("");
                 setExperience("");

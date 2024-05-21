@@ -33,6 +33,7 @@ const FormSubmission = () => {
                 applicationPurpose: applicationFor,
                 fileUrl: null,
             });
+            await addDoc(collection(db, 'notifications'), { type: 'application', title: applicationFor });
 
             if (file) {
                 const storageRef = ref(storage, `${docRef.id}_${file.name}`);

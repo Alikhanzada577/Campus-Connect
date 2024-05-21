@@ -81,7 +81,7 @@
         }
     }
     .icons {
-        height: 17vh;
+        height: 15vh;
         padding: 10px 0;
     }
 
@@ -482,4 +482,31 @@
 
 #zmmtg-root {
     display: none;
+}
+
+.notifications {
+    display: flex;
+    flex-direction: row;
+    background: #ffffff;
+    height: 100vh;
+
+    .Navigation {
+        flex: 0.02;
+    }
+
+    .ntf-container {
+        flex: 3;
+        overflow: scroll;
+        overflow-x: hidden;
+        width: 100%;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+
+        .ntn-card {
+            margin:0 4rem;
+            border: 1px solid black;
+            justify-content:flex-start;
+        }
+    }
 }

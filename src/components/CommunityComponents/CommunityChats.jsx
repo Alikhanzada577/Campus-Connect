@@ -1,12 +1,32 @@
-
-import React from 'react';
-import { chatRooms } from './ChatRooms';
-import { useLastMessage } from './useLastMessage';
+import React, { useEffect, useState } from 'react';
+import { db } from './../../firebase/firebase-auth';
+import { collection, getDocs, query } from 'firebase/firestore';
 
 const CommunityChats = ({ onChatRoomClick }) => {
+  const [rooms, setRooms] = useState([]);
+
+  useEffect(() => {
+    const fetchRooms = async () => {
+      try {
+        const roomSnapshot = await getDocs(collection(db, 'room'));
+        const roomList = [];
+        roomSnapshot.forEach((doc) => {
+          // Get the subcollections for each document
+          const subcollections = doc.data();
+          roomList.push({ id: doc.id, title: subcollections.title, subcollections });
+        });
+        setRooms(roomList);
+      } catch (error) {
+        console.error('Error fetching rooms:', error);
+      }
+    };
+
+    fetchRooms();
+  }, []);
+
   return (
     <div className='communityChats'>
-      {chatRooms.map((room) => (
+      {rooms.map((room) => (
         <UserChat key={room.id} room={room} onChatRoomClick={onChatRoomClick} />
       ))}
     </div>
@@ -14,13 +34,11 @@ const CommunityChats = ({ onChatRoomClick }) => {
 }; 
 
 const UserChat = ({ room, onChatRoomClick }) => {
-  const lastMessage = useLastMessage(room.id);
-
   return (
     <div className="userChat" onClick={() => onChatRoomClick(room.title)}>
       <div className="userChatInfo">
         <span>{room.title}</span>
-        <p>{lastMessage}</p>
+       
       </div>
     </div>
   );

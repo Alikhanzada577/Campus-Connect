@@ -3,6 +3,7 @@ import MessageIcon from "@mui/icons-material/Message";
 import PeopleIcon from "@mui/icons-material/People";
 import CampaignOutlinedIcon from "@mui/icons-material/CampaignOutlined";
 import AssuredWorkloadOutlinedIcon from "@mui/icons-material/AssuredWorkloadOutlined";
+import NotificationsIcon from '@mui/icons-material/Notifications';
 import ContactPageOutlinedIcon from "@mui/icons-material/ContactPageOutlined";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Tooltip from "@mui/material/Tooltip";
@@ -101,6 +102,20 @@ function LeftNav() {
               fontSize="large"
               style={{ color: "white", transform: "translate(0, 100%)" }}
             ></ContactPageOutlinedIcon>
+          </div>
+        </Tooltip>
+      </Link>
+      <Link to="/Notifications">
+        <Tooltip title="Application Form" placement="right">
+          <div
+            className={`icons ${
+              location.pathname === "/Notifications" ? "active" : ""
+            }`}
+          >
+            <NotificationsIcon
+              fontSize="large"
+              style={{ color: "white", transform: "translate(0, 100%)" }}
+            ></NotificationsIcon>
           </div>
         </Tooltip>
       </Link>

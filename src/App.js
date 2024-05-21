@@ -10,6 +10,7 @@ import ApplicationForm from './pages/ApplicationForm/ApplicationForm';
 import JobPortal from './pages/JobPortal/JobPortal';
 import Communities from './pages/Communities/Communities';
 import { AuthContext } from './context/AuthContext';
+import Notifications from './pages/Notifications/Notifications';
 
 function App() {
 
@@ -55,6 +56,11 @@ const ProtectRoute = ({children})=>{
                 <ProtectRoute>
                 <JobPortal/>
                 </ProtectRoute>} /> 
+                <Route path='/Notifications'
+                element={
+                  <ProtectRoute>
+                  <Notifications/>
+                  </ProtectRoute>} /> 
         </Routes>
       </div>
     </Router>

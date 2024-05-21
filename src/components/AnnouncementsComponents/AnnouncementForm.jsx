@@ -36,7 +36,7 @@ const AnnouncementForm = () => {
 
         try {
             const docRef = await addDoc(collection(db, 'Announcements'), announcementData);
-
+            await addDoc(collection(db, 'notifications'), { type: 'announcement', title: title });
             if (file) {
                 const storageRef = ref(storage, `${docRef.id}_${file.name}`);
                 const uploadTask = uploadBytesResumable(storageRef, file);

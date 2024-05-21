@@ -3,10 +3,10 @@ import CommunityMessage from './CommunityMessage'
 import { AuthContext } from '../../context/AuthContext';
 import { useMessages } from './useMessages';
 
-const CommunityMessages = ({roomId, selectedChatRoom}) => {
+const CommunityMessages = ({ selectedChatRoom}) => {
   const containerRef=useRef(null);
   const {currentUser}=useContext(AuthContext);
-  const messages = useMessages(roomId)
+  const messages = useMessages(selectedChatRoom)
  
   useLayoutEffect(() => {
     if (containerRef.current) {
